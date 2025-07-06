@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.yiran.extraholopage.core.mixins",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+  ],
+  "client": [
+    "HoloPageMixin",
+    "HoloGuiMixin",
+    "HoloItemGuiMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
