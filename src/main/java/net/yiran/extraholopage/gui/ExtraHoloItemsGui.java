@@ -44,19 +44,6 @@ public class ExtraHoloItemsGui  extends GuiElement {
             this.addChild(holoItemGui);
             index++;
         }
-/*
-        SlashBladeModularItem item = (SlashBladeModularItem) MODLUAR.get();
-        HoloItemGui holoItemGui = (HoloItemGui) new HoloItemGui(1, -40, item, 0, () -> onItemSelect.accept(item, item.getDefaultStack()), onSlotSelect).setAttachment(GuiAttachment.topCenter);
-
-        IHoloItemGui iHoloItemGui = IHoloItemGui.cast(holoItemGui);
-
-        iHoloItemGui.setIcon(
-                new GuiTexture(0, 0, 50, 50, 0, 16,new ResourceLocation("slashbladetetra:textures/gui/texture.png"))
-        );
-
-        this.addChild(holoItemGui);
-*/
-
         this.materialsButton = new HoloMaterialsButtonGui(0, 60, onMaterialsClick);
         this.materialsButton.setAttachment(GuiAttachment.topCenter);
         this.addChild(this.materialsButton);
