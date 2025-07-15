@@ -2,6 +2,7 @@ package net.yiran.extraholopage;
 
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.yiran.extraholopage.compat.CompatHandler;
 
@@ -13,6 +14,10 @@ public class ExtraHoloPage {
     public ExtraHoloPage() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         bus.addListener(CompatHandler::onClientSetup);
+        FMLJavaModLoadingContext.get().registerConfig(
+                ModConfig.Type.CLIENT,
+                Config.SPEC
+        );
     }
 
 }
