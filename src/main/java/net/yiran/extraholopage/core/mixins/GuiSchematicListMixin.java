@@ -1,5 +1,7 @@
 package net.yiran.extraholopage.core.mixins;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.resources.language.I18n;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -34,10 +36,15 @@ public abstract class GuiSchematicListMixin extends GuiElement {
     private void init(int x, int y, Consumer schematicSelectionConsumer, CallbackInfo ci){
         this.elements.remove(this.buttonBack);
         this.elements.remove(this.buttonForward);
+        Font font = Minecraft.getInstance().font;
 
-        this.buttonBack = new GuiButton(-25, this.height + 4, 45, 12, I18n.get("tetra.workbench.schematic_list.previous"), () -> this.setPage(this.getPage() - 1));
+        String buttonBackText =I18n.get("tetra.workbench.schematic_list.previous");
+        int size = font.width(buttonBackText);
+        this.buttonBack = new GuiButton(20-size, this.height + 4, size, 12, buttonBackText, () -> this.setPage(this.getPage() - 1));
         this.addChild(this.buttonBack);
-        this.buttonForward = new GuiButton(this.width - 20, this.height + 4, 30, 12, I18n.get("tetra.workbench.schematic_list.next"), () -> this.setPage(this.getPage() + 1));
+
+        String buttonForwardText =I18n.get("tetra.workbench.schematic_list.next");
+        this.buttonForward = new GuiButton(this.width - 20, this.height + 4, font.width(buttonForwardText), 12, buttonForwardText, () -> this.setPage(this.getPage() + 1));
         this.addChild(this.buttonForward);
     }
 }
