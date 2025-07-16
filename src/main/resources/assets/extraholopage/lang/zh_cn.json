@@ -1,4 +1,6 @@
 {
   "tetra.holo.craft.modular_polearm": "长柄武器",
-  "tetra.holo.craft.modular_artifact": "锻造饰品"
+  "tetra.holo.craft.modular_artifact": "锻造饰品",
+  "tetra.workbench.schematic_list.previous": "< 上一页",
+  "tetra.workbench.schematic_list.next": "下一页 >"
 }

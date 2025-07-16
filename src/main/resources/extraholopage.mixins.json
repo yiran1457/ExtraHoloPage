@@ -9,7 +9,8 @@
     "HoloPageMixin",
     "HoloGuiMixin",
     "HoloItemGuiMixin",
-    "HoloMaterialApplicableMixin"
+    "HoloMaterialApplicableMixin",
+    "GuiSchematicListMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -1,4 +1,6 @@
 {
   "tetra.holo.craft.modular_polearm": "Polearm",
-  "tetra.holo.craft.modular_artifact": "Artifact"
+  "tetra.holo.craft.modular_artifact": "Artifact",
+  "tetra.workbench.schematic_list.previous": "< Previous",
+  "tetra.workbench.schematic_list.next": "Next >"
 }
