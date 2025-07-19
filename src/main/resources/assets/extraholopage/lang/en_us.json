@@ -2,5 +2,14 @@
   "tetra.holo.craft.modular_polearm": "Polearm",
   "tetra.holo.craft.modular_artifact": "Artifact",
   "tetra.workbench.schematic_list.previous": "< Previous",
-  "tetra.workbench.schematic_list.next": "Next >"
+  "tetra.workbench.schematic_list.next": "Next >",
+  "tetra.holo.craft.materials.stat.experienceCost": "experienceCost",
+  "tetra.holo.craft.materials.stat.category": "category",
+  "tetra.holo.craft.materials.stat.effects": "has effects",
+  "tetra.holo.craft.materials.stat.requiredTools": "requiredTools\"",
+  "tetra.holo.craft.materials.stat.attributes": "has attributes",
+  "tetra.holo.craft.materials.stat.aspects": "aspects",
+  "tetra.holo.craft.materials.stat.improvements": "has improvements",
+  "tetra.holo.craft.materials.stat.toolEfficiency": "toolEfficiency",
+  "tetra.holo.craft.materials.stat.toolLevel": "toolLevel"
 }

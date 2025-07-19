@@ -10,7 +10,9 @@
     "HoloGuiMixin",
     "HoloItemGuiMixin",
     "HoloMaterialApplicableMixin",
-    "GuiSchematicListMixin"
+    "GuiSchematicListMixin",
+    "HoloImprovementGuiMixin",
+    "HoloImprovementVariantGuiMixin"
   ],
   "injectors": {
     "defaultRequire": 1

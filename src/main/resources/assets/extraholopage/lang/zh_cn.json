@@ -2,5 +2,14 @@
   "tetra.holo.craft.modular_polearm": "长柄武器",
   "tetra.holo.craft.modular_artifact": "锻造饰品",
   "tetra.workbench.schematic_list.previous": "< 上一页",
-  "tetra.workbench.schematic_list.next": "下一页 >"
+  "tetra.workbench.schematic_list.next": "下一页 >",
+  "tetra.holo.craft.materials.stat.experienceCost": "经验消耗",
+  "tetra.holo.craft.materials.stat.category": "类型",
+  "tetra.holo.craft.materials.stat.effects": "材料拥有以下effect",
+  "tetra.holo.craft.materials.stat.requiredTools": "材料需求以下工具等级",
+  "tetra.holo.craft.materials.stat.attributes": "材料拥有以下属性",
+  "tetra.holo.craft.materials.stat.aspects": "特色",
+  "tetra.holo.craft.materials.stat.improvements": "此材料自带的改进",
+  "tetra.holo.craft.materials.stat.toolEfficiency": "工具效率",
+  "tetra.holo.craft.materials.stat.toolLevel": "工具等级"
 }
