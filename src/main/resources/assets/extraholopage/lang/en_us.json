@@ -11,5 +11,7 @@
   "tetra.holo.craft.materials.stat.aspects": "aspects",
   "tetra.holo.craft.materials.stat.improvements": "has improvements",
   "tetra.holo.craft.materials.stat.toolEfficiency": "toolEfficiency",
-  "tetra.holo.craft.materials.stat.toolLevel": "toolLevel"
+  "tetra.holo.craft.materials.stat.toolLevel": "toolLevel",
+  "item.tetra.scroll.sword/throwing_knife.description_extended": "one \b\n\f\n\t two"
+
 }

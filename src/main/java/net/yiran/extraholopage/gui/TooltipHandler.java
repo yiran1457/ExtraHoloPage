@@ -1,15 +1,17 @@
 package net.yiran.extraholopage.gui;
 
 import com.google.common.collect.Multimap;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraftforge.client.event.ScreenEvent;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.yiran.extraholopage.Config;
 import net.yiran.extraholopage.api.TooltipRegistries;
 import se.mickelus.tetra.aspect.ItemAspect;
@@ -20,7 +22,6 @@ import se.mickelus.tetra.module.data.EffectData;
 import se.mickelus.tetra.module.data.MaterialData;
 import se.mickelus.tetra.module.data.ToolData;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -30,38 +31,72 @@ import java.util.function.Supplier;
 import static net.yiran.extraholopage.gui.ComponentHelper.*;
 import static net.yiran.extraholopage.gui.MaterialTooltipHelper.*;
 
-//TODO:对文本操作优化，待重构
 public class TooltipHandler {
     public static Supplier<TooltipHandler> INSTANCE = TooltipHandler::new;
 
     public TooltipHandler() {
-        allTick = Config.PROGRESS_SHOW_TICK.get();
+        progressLength = Config.PROGRESS_SHOW_TICK.get();
         bar = Config.PROGRESS_BAR_SIZE.get();
         style = Config.PROGRESS_STYLE.get().substring(0, 1);
     }
 
     public int size = 0;
     public int index = 0;
-    public int showTick = 0;
-    public int allTick;
+    public int scrollDelta = 0;
+    public int nowProgress = 0;
+    public int progressLength;
     public int bar;
     public String style;
+    public boolean isSelected = false;
+    public int lastScrolledTick = 0;
 
+    @SubscribeEvent
     public void onTick(TickEvent.ClientTickEvent event) {
-        //var mc = Minecraft.getInstance().screen.getClass();
+        if (event.phase == TickEvent.Phase.END) return;
+        lastScrolledTick--;
+        if (isSelected) {
+            isSelected = false;
+        }
+        if (size < 2) return;
         if (!isCtrl()) {
-            showTick = 0;
+            nowProgress = 0;
         } else {
-            if (!isShift() && size > 1)
-                showTick++;
-
-            if (showTick >= allTick) {
-                showTick = 0;
-                index++;
+            if (lastScrolledTick > 1)
+                updateProgress();
+            else {
+               nowProgress = reduce(nowProgress);
             }
         }
     }
 
+    public void updateProgress() {
+        int progress = scrollDelta / 6;
+        scrollDelta -= progress;
+        nowProgress += progress;
+        if (nowProgress >= progressLength) {
+            toNextPage();
+        }
+    }
+
+    public void toNextPage() {
+        nowProgress = 0;
+        index++;
+        scrollDelta = 0;
+    }
+
+    public int reduce(int number) {
+        return --number < 0 ? 0 : number;
+    }
+
+    @SubscribeEvent
+    public void onMouseScrolled(ScreenEvent.MouseScrolled event) {
+        if (!isSelected) return;
+        lastScrolledTick = 20;
+        scrollDelta -= Math.min(0, (int) (event.getScrollDelta() * 8));
+        event.setCanceled(true);
+    }
+
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void onTooltip(ItemTooltipEvent event) {
         if (!event.getFlags().isAdvanced()) return;
         List<Component> originToolTip = event.getToolTip();
@@ -78,6 +113,7 @@ public class TooltipHandler {
             }
             if (size > 1) {
                 addProgressBar(toolTip);
+                isSelected = true;
             }
 
             MaterialData materialData = pMaterialData.get(index);
@@ -176,7 +212,7 @@ public class TooltipHandler {
     }
 
     public void addProgressBar(List<Component> tooltips) {
-        int arg0 = (showTick * bar) / allTick;
+        int arg0 = (nowProgress * bar) / progressLength;
         StringBuilder builder = new StringBuilder();
         builder.append("§7");
         for (int i = 0; i < bar; i++) {

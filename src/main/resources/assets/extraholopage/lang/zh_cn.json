@@ -11,5 +11,6 @@
   "tetra.holo.craft.materials.stat.aspects": "特色",
   "tetra.holo.craft.materials.stat.improvements": "此材料自带的改进",
   "tetra.holo.craft.materials.stat.toolEfficiency": "工具效率",
-  "tetra.holo.craft.materials.stat.toolLevel": "工具等级"
+  "tetra.holo.craft.materials.stat.toolLevel": "工具等级",
+  "tetra.improvement.laminated_stave/outer_layer.name": "[ %s ] 外覆层"
 }
