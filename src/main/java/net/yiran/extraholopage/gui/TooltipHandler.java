@@ -38,6 +38,7 @@ public class TooltipHandler {
         progressLength = Config.PROGRESS_SHOW_TICK.get();
         bar = Config.PROGRESS_BAR_SIZE.get();
         style = Config.PROGRESS_STYLE.get().substring(0, 1);
+        showNeedAdvancedTooltip = Config.SHOW_NEED_ADVANCED_TOOLTIP.get();
     }
 
     public int size = 0;
@@ -49,6 +50,7 @@ public class TooltipHandler {
     public String style;
     public boolean isSelected = false;
     public int lastScrolledTick = 0;
+    public boolean showNeedAdvancedTooltip;
 
     @SubscribeEvent
     public void onTick(TickEvent.ClientTickEvent event) {
@@ -64,7 +66,7 @@ public class TooltipHandler {
             if (lastScrolledTick > 1)
                 updateProgress();
             else {
-               nowProgress = reduce(nowProgress);
+                nowProgress = reduce(nowProgress);
             }
         }
     }
@@ -98,7 +100,7 @@ public class TooltipHandler {
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void onTooltip(ItemTooltipEvent event) {
-        if (!event.getFlags().isAdvanced()) return;
+        if (showNeedAdvancedTooltip && !event.getFlags().isAdvanced()) return;
         List<Component> originToolTip = event.getToolTip();
         List<Component> toolTip = new ArrayList<>();
         List<MaterialData> pMaterialData = DataManager.instance.materialData.getData().values().stream().filter(d -> d.material.getPredicate() != null && d.material.getPredicate().matches(event.getItemStack())).toList();
@@ -119,6 +121,8 @@ public class TooltipHandler {
             MaterialData materialData = pMaterialData.get(index);
             if (Config.SHOW_CATEGORY.get())
                 toolTip.add(addPrefix(translatable("tetra.holo.craft.materials.stat.category", color1), translatable("tetra.variant_category." + materialData.category + ".label", color1)));
+            if (Config.SHOW_DURABILITY.get())
+                addIfNotZero(toolTip, "durability", materialData.durability);
             if (Config.SHOW_BASIC.get()) {
                 addIfNotZero(toolTip, "primary", materialData.primary);
                 addIfNotZero(toolTip, "secondary", materialData.secondary);
@@ -130,6 +134,10 @@ public class TooltipHandler {
             }
             if (Config.SHOW_XP_COST.get())
                 addIfNotZero(toolTip, "experienceCost", materialData.experienceCost);
+            if (Config.SHOW_INTEGRITY_INFO.get()) {
+                addIfNotZero(toolTip, "integrityGain", materialData.integrityGain);
+                addIfNotZero(toolTip, "integrityCost", materialData.integrityCost);
+            }
             if (Config.SHOW_REQUIRED_TOOL.get())
                 addRequiredToolTooltip(toolTip, materialData.requiredTools);
             if (Config.SHOW_ATTRIBUTES.get())

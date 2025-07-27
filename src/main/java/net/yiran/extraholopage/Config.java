@@ -10,7 +10,9 @@ public class Config {
     public static final ForgeConfigSpec.ConfigValue<Boolean> IGNORE_HOLO_ITEM;
     public static final ForgeConfigSpec.ConfigValue<Integer> MODIFY_IMPROVEMENT_SPACING;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_MATERIAL_TOOLTIP;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> SHOW_NEED_ADVANCED_TOOLTIP;
     public static final ForgeConfigSpec.ConfigValue<Boolean> SHOW_REQUIRED_TOOL;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> SHOW_DURABILITY;
     public static final ForgeConfigSpec.ConfigValue<Boolean> SHOW_CATEGORY;
     public static final ForgeConfigSpec.ConfigValue<Boolean> SHOW_BASIC;
     public static final ForgeConfigSpec.ConfigValue<Boolean> SHOW_XP_COST;
@@ -19,6 +21,7 @@ public class Config {
     public static final ForgeConfigSpec.ConfigValue<Boolean> SHOW_ASPECTS;
     public static final ForgeConfigSpec.ConfigValue<Boolean> SHOW_IMPROVEMENTS;
     public static final ForgeConfigSpec.ConfigValue<Boolean> SHOW_TOOL_LEVEL;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> SHOW_INTEGRITY_INFO;
     public static final ForgeConfigSpec.ConfigValue<Integer> PROGRESS_BAR_SIZE;
     public static final ForgeConfigSpec.ConfigValue<Integer> PROGRESS_SHOW_TICK;
     public static final ForgeConfigSpec.ConfigValue<String> PROGRESS_STYLE;
@@ -46,9 +49,15 @@ public class Config {
         ENABLE_MATERIAL_TOOLTIP = BUILDER
                 .comment("是否启用添加材料Tooltip-修改此配置需重启生效")
                 .define("enableMaterialTooltip", false);
+        SHOW_NEED_ADVANCED_TOOLTIP = BUILDER
+                .comment("是否需要在打开高级物品提示的时候才显示tooltip-修改此配置需重启生效")
+                .define("showNeedAdvancedTooltip", true);
         SHOW_REQUIRED_TOOL = BUILDER
                 .comment("是否在tooltip里面提示需求工具等级")
                 .define("showRequiredTool", true);
+        SHOW_DURABILITY =BUILDER
+                .comment("是否在tooltip里面提示材料基础耐久度")
+                .define("showDurability", true);
         SHOW_CATEGORY = BUILDER
                 .comment("是否在tooltip里面提示材料类型")
                 .define("showCategory", true);
@@ -73,6 +82,9 @@ public class Config {
         SHOW_TOOL_LEVEL = BUILDER
                 .comment("是否在tooltip里面提示材料工具等级及其效率")
                 .define("showToolLevel", true);
+        SHOW_INTEGRITY_INFO = BUILDER
+                .comment("是否在tooltip里面提示材料完整度奖励与花费")
+                .define("showIntegrityInfo", true);
 
         BUILDER.push("ProgressBar");
         PROGRESS_BAR_SIZE = BUILDER

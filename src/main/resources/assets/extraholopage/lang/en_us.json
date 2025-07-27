@@ -12,6 +12,8 @@
   "tetra.holo.craft.materials.stat.improvements": "has improvements",
   "tetra.holo.craft.materials.stat.toolEfficiency": "toolEfficiency",
   "tetra.holo.craft.materials.stat.toolLevel": "toolLevel",
-  "item.tetra.scroll.sword/throwing_knife.description_extended": "one \b\n\f\n\t two"
+  "tetra.holo.craft.materials.stat.integrityGain": "Base Integrity Bonus",
+  "tetra.holo.craft.materials.stat.integrityCost": "Base Integrity Cost",
+  "tetra.holo.craft.materials.stat.durability": "Base Durability"
 
 }
