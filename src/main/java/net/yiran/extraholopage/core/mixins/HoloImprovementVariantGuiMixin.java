@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import se.mickelus.mutil.gui.GuiElement;
 import se.mickelus.mutil.gui.GuiString;
-import se.mickelus.tetra.items.modular.impl.holo.gui.craft.HoloImprovementVariantGui;
+import se.mickelus.tetra.items.modular.impl.holo.gui.craft.schematic.HoloImprovementVariantGui;
 import se.mickelus.tetra.module.schematic.OutcomePreview;
 
 import java.util.function.Consumer;

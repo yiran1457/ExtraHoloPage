@@ -9,8 +9,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import se.mickelus.mutil.gui.GuiElement;
 import se.mickelus.mutil.gui.impl.GuiHorizontalLayoutGroup;
-import se.mickelus.tetra.items.modular.impl.holo.gui.craft.HoloImprovementGui;
-import se.mickelus.tetra.items.modular.impl.holo.gui.craft.OutcomeStack;
+import se.mickelus.tetra.items.modular.impl.holo.gui.craft.schematic.HoloImprovementGui;
+import se.mickelus.tetra.items.modular.impl.holo.gui.craft.schematic.OutcomeStack;
 import se.mickelus.tetra.module.schematic.OutcomePreview;
 
 import java.util.List;

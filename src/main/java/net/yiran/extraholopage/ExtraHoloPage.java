@@ -1,17 +1,12 @@
 package net.yiran.extraholopage;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.yiran.extraholopage.compat.CompatHandler;
-import net.yiran.extraholopage.gui.ComponentHelper;
 import net.yiran.extraholopage.gui.MaterialTooltipHelper;
 import net.yiran.extraholopage.gui.TooltipHandler;
 import org.apache.logging.log4j.LogManager;

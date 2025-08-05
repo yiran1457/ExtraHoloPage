@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import se.mickelus.mutil.gui.GuiAttachment;
 import se.mickelus.mutil.gui.GuiClickable;
 import se.mickelus.mutil.gui.GuiTexture;
-import se.mickelus.tetra.items.modular.impl.holo.gui.craft.HoloItemGui;
+import se.mickelus.tetra.items.modular.impl.holo.gui.craft.item.HoloItemGui;
 
 @Mixin(HoloItemGui.class)
 public abstract class HoloItemGuiMixin extends GuiClickable implements IHoloItemGui {

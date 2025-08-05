@@ -44,7 +44,7 @@ public abstract class HoloGuiMixin {
     private void sb$openSchematic(IModularItem item, ItemStack itemStack, String slot, UpgradeSchematic schematic, Runnable closeCallback, CallbackInfo ci) {
         if (ExtraHoloRegister.MAP.containsKey(item)) {
             this.changePage(HoloPage.valueOf("ADDON"));
-            ((ExtraHoloRootGui) this.pages[3]).updateState(item, itemStack, slot, schematic);
+            ((ExtraHoloRootGui) this.pages[3]).openFromWorkbench(item, itemStack, slot, schematic);
             this.closeCallback = closeCallback;
             ci.cancel();
         }
