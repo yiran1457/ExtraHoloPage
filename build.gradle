@@ -87,13 +87,13 @@ mixin {
 //jarJar.enable()
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-    //jarJar(group: 'com.tterrag.registrate', name: 'Registrate', version: "[MC1.20,MC1.21)")
 /*
     jarJar(implementation fg.deobf("curse.maven:modern-ui-352491:6199942"))
     jarJar("curse.maven:modern-ui-352491:6199942")*/
     implementation fg.deobf("curse.maven:modern-ui-352491:6199942")
     implementation fg.deobf("curse.maven:ibe-editor-256822:4994072")
-
+    //jarJar(group: 'curse.maven', name: 'modern-ui-352491', version: "[6199942,)")
+    //https://cursemaven.com/test/352491/6199942/maven-metadata.xml
     //implementation fg.deobf("curse.maven:curios-309927:6418456")
     //implementation fg.deobf("curse.maven:caelus-308989:5281700")
 

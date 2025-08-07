@@ -3,6 +3,7 @@
   "tetra.holo.craft.modular_artifact": "锻造饰品",
   "tetra.workbench.schematic_list.previous": "< 上一页",
   "tetra.workbench.schematic_list.next": "下一页 >",
+  "ehp.open_holo_gui": "打开全息球gui",
   "tetra.holo.craft.materials.stat.experienceCost": "经验消耗",
   "tetra.holo.craft.materials.stat.category": "类型",
   "tetra.holo.craft.materials.stat.effects": "材料拥有以下effect",

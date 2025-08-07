@@ -3,6 +3,7 @@
   "tetra.holo.craft.modular_artifact": "Artifact",
   "tetra.workbench.schematic_list.previous": "< Previous",
   "tetra.workbench.schematic_list.next": "Next >",
+  "ehp.open_holo_gui": "Open Holo Sphere GUI",
   "tetra.holo.craft.materials.stat.experienceCost": "experienceCost",
   "tetra.holo.craft.materials.stat.category": "category",
   "tetra.holo.craft.materials.stat.effects": "has effects",
