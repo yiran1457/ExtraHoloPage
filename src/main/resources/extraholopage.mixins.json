@@ -6,13 +6,15 @@
   "mixins": [
   ],
   "client": [
-    "HoloPageMixin",
+    "GuiSchematicListMixin",
     "HoloGuiMixin",
+    "HoloImprovementGuiMixin",
+    "HoloImprovementVariantGuiMixin",
     "HoloItemGuiMixin",
     "HoloMaterialApplicableMixin",
-    "GuiSchematicListMixin",
-    "HoloImprovementGuiMixin",
-    "HoloImprovementVariantGuiMixin"
+    "HoloPageMixin",
+    "StatBarStoreMixin",
+    "ToolActionIconStoreMixin"
   ],
   "injectors": {
     "defaultRequire": 1
