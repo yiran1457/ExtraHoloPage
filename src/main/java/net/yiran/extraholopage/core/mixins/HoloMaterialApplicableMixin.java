@@ -22,7 +22,7 @@ import se.mickelus.tetra.module.schematic.UpgradeSchematic;
 
 import java.util.List;
 
-@Mixin(HoloMaterialApplicable.class)
+@Mixin(value = HoloMaterialApplicable.class, remap = false)
 public class HoloMaterialApplicableMixin {
     @Shadow private List<Component> tooltip;
 

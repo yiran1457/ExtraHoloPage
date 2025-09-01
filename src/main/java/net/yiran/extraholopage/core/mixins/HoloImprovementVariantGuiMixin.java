@@ -15,7 +15,7 @@ import se.mickelus.tetra.module.schematic.OutcomePreview;
 
 import java.util.function.Consumer;
 
-@Mixin(HoloImprovementVariantGui.class)
+@Mixin(value = HoloImprovementVariantGui.class, remap = false)
 public class HoloImprovementVariantGuiMixin extends GuiElement {
     @Shadow @Final private GuiString label;
 

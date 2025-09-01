@@ -81,12 +81,17 @@ repositories {
 // Mixins
 
 mixin {
-    //add sourceSets.main, "tetra_addition.refmap.json"
+    add sourceSets.main, "extraholopage.refmap.json"
     config "extraholopage.mixins.json"
 }
 //jarJar.enable()
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+
+    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.2.0-rc.2"))
+    implementation(jarJar("io.github.llamalad7:mixinextras-forge:0.2.0-rc.2")) {
+        jarJar.ranged(it, "[0.2.0-rc.2,)")
+    }
 /*
     jarJar(implementation fg.deobf("curse.maven:modern-ui-352491:6199942"))
     jarJar("curse.maven:modern-ui-352491:6199942")*/
@@ -106,6 +111,7 @@ dependencies {
 
     implementation fg.deobf("curse.maven:create-328085:6641603")
     //annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
 
 

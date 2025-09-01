@@ -13,7 +13,7 @@ import se.mickelus.tetra.module.data.GlyphData;
 import java.util.Map;
 import java.util.Objects;
 
-@Mixin(ToolActionIconStore.class)
+@Mixin(value = ToolActionIconStore.class, remap = false)
 public class ToolActionIconStoreMixin {
     @Inject(method = "prepareIcons",at=@At(value = "RETURN"))
     public void prepareIcons(CallbackInfoReturnable<Map<ToolAction, GlyphData>> cir) {

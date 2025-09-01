@@ -16,7 +16,7 @@ import se.mickelus.tetra.items.modular.impl.holo.gui.HoloGui;
 import se.mickelus.tetra.items.modular.impl.holo.gui.HoloRootBaseGui;
 import se.mickelus.tetra.module.schematic.UpgradeSchematic;
 
-@Mixin(HoloGui.class)
+@Mixin(value = HoloGui.class, remap = false)
 public abstract class HoloGuiMixin {
 
     @Shadow

@@ -12,9 +12,9 @@ import se.mickelus.tetra.gui.stats.data.StatBarStore;
 
 import java.util.Objects;
 
-@Mixin(StatBarStore.class)
+@Mixin(value = StatBarStore.class, remap = false)
 public class StatBarStoreMixin {
-    @Inject(method = "prepareBars",at=@At(value = "RETURN"),cancellable = true)
+    @Inject(method = "prepareBars", at = @At(value = "RETURN"), cancellable = true)
     private static void prepareBars(CallbackInfoReturnable<GuiStatBase[]> cir) {
         var resourceManager = Minecraft.getInstance().getResourceManager();
         GuiStatBase[] s = resourceManager.listResources("tool_bars", (rl) -> rl.getPath().endsWith(".json"))
@@ -24,6 +24,6 @@ public class StatBarStoreMixin {
                 .map((entry) -> ToolBarHelper.parseT(entry.getValue()))
                 .filter(Objects::nonNull)
                 .toArray(GuiStatBase[]::new);
-        cir.setReturnValue( ArrayUtils.addAll(cir.getReturnValue(),s));
+        cir.setReturnValue(ArrayUtils.addAll(cir.getReturnValue(), s));
     }
 }

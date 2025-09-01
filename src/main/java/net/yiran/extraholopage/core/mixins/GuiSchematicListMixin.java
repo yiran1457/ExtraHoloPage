@@ -16,7 +16,7 @@ import se.mickelus.tetra.blocks.workbench.gui.GuiSchematicList;
 
 import java.util.function.Consumer;
 
-@Mixin(GuiSchematicList.class)
+@Mixin(value = GuiSchematicList.class, remap = false)
 public abstract class GuiSchematicListMixin extends GuiElement {
     @Mutable
     @Shadow @Final private GuiButton buttonForward;
