@@ -16,8 +16,6 @@ import javax.annotation.Nullable;
 import java.util.LinkedList;
 
 public class ExtraHoloRootGui  extends HoloRootBaseGui {
-
-    public static final char backBinding = 'q';
     private final HoloBreadcrumbsGui breadcrumbs;
     private final ExtraHoloItemsGui itemsView;
     private final HoloSchematicListGui schematicsView;

@@ -1,4 +1,4 @@
-package net.yiran.extraholopage.core;
+package net.yiran.extraholopage.util;
 
 import net.minecraft.client.resources.language.I18n;
 import net.yiran.extraholopage.Config;
@@ -19,7 +19,7 @@ public class MyHoloMaterialGroupGui extends GuiElement {
     private final KeyframeAnimation labelAnimation;
     private final KeyframeAnimation[] itemAnimations;
 
-    public MyHoloMaterialGroupGui(int x, int y, String category, List<MaterialData> materials, int offset, Consumer<MaterialData> onVariantHover, Consumer<MaterialData> onVariantBlur, Consumer<MaterialData> onVariantSelect) {
+    public MyHoloMaterialGroupGui(int x, int y, GuiSorter guiSorter, String category, List<MaterialData> materials, int offset, Consumer<MaterialData> onVariantHover, Consumer<MaterialData> onVariantBlur, Consumer<MaterialData> onVariantSelect) {
         super(x, y, 0, 50);
         GuiString label = new GuiStringSmall(0, 0, I18n.get("tetra.variant_category." + category + ".label"));
         label.setColor(8355711);
@@ -34,7 +34,8 @@ public class MyHoloMaterialGroupGui extends GuiElement {
 
         for (int i = 0; i < materials.size(); ++i) {
             MaterialData material = materials.get(i);
-            HoloMaterialItemGui item = new HoloMaterialItemGui(i / Config.HOLO_MATERIAL_LINE.get() * 20, i % Config.HOLO_MATERIAL_LINE.get() * 20, material, onVariantHover, onVariantBlur, onVariantSelect);
+            var item = new HoloMaterialSorterGui(i / Config.HOLO_MATERIAL_LINE.get() * 20, i % Config.HOLO_MATERIAL_LINE.get() * 20, guiSorter, material, onVariantHover, onVariantBlur, onVariantSelect);
+            //HoloMaterialItemGui item = new HoloMaterialItemGui(i / Config.HOLO_MATERIAL_LINE.get() * 20, i % Config.HOLO_MATERIAL_LINE.get() * 20, material, onVariantHover, onVariantBlur, onVariantSelect);
             this.materialsContainer.addChild(item);
             this.itemAnimations[i] = (new KeyframeAnimation(80, item))
                     .applyTo(new Applier.Opacity(0.0F, 1.0F), new Applier.TranslateY((float) (item.getY() - 5), (float) item.getY()))
@@ -47,6 +48,7 @@ public class MyHoloMaterialGroupGui extends GuiElement {
 
     public void updateSelection(MaterialData material) {
         this.materialsContainer.getChildren(HoloMaterialItemGui.class).forEach((variant) -> variant.updateSelection(material));
+        this.materialsContainer.getChildren(HoloMaterialSorterGui.class).forEach((variant) -> variant.updateSelection(material));
     }
 
     public void animateIn() {

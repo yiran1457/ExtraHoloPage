@@ -33,7 +33,7 @@ public class StatBarShowManager {
         registerAllowWithGroup("weapon", "tetra.stats.speed", "tetra.stats.attack_damage");
         registerAllowWithGroup("shield", "tetra.stats.blocking_reflect");
         registerAllowWithGroup("ranged", "tetra.stats.spread", "tetra.stats.draw_speed", "tetra.stats.draw_strength");
-        registerSimplyHandle("tetra.stats.throwable", checkItem -> ShowResult.SUCCESS);
+        //registerSimplyHandle("tetra.stats.throwable", checkItem -> ShowResult.SUCCESS);
     }
 
     public static StatBarShowManager getInstance() {

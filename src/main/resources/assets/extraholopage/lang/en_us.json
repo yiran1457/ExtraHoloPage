@@ -15,6 +15,24 @@
   "tetra.holo.craft.materials.stat.toolLevel": "toolLevel",
   "tetra.holo.craft.materials.stat.integrityGain": "Base Integrity Bonus",
   "tetra.holo.craft.materials.stat.integrityCost": "Base Integrity Cost",
-  "tetra.holo.craft.materials.stat.durability": "Base Durability"
+  "tetra.holo.craft.materials.stat.durability": "Base Durability",
+  "---sorter---": "SORTER",
+  "ehp.sorter.desc": "S",
+  "ehp.sorter.NONE": "NONE",
+  "ehp.sorter.primary": "Primary",
+  "ehp.sorter.secondary": "Secondary",
+  "ehp.sorter.tertiary": "Tertiary",
+  "ehp.sorter.magicCapacity": "MagicCapacity",
+  "ehp.sorter.durability": "Durability",
+  "ehp.sorter.toolLevel": "ToolLevel",
+  "ehp.sorter.experienceCost": "ExperienceCost",
+  "ehp.sorter.requiredTools.hammer": "Required Hammer",
+  "ehp.sorter.requiredTools.cut": "Required Cut",
+  "ehp.sorter.requiredTools.axe": "Required Axe",
+  "---filter---": "FILTER",
+  "ehp.filter.desc": "F",
+  "ehp.filter.NONE": "NONE",
+  "ehp.filter.hasEffect": "Has Effect",
+  "ehp.filter.hasAttribute": "Has Attribute"
 
 }
