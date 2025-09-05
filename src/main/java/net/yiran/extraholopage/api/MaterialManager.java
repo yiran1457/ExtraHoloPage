@@ -11,14 +11,14 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class MaterManager {
-    public static final MaterManager INSTANCE = new MaterManager();
+public class MaterialManager {
+    public static final MaterialManager INSTANCE = new MaterialManager();
     public List<MaterialSorter> sorters = new ArrayList<>();
     public boolean needReSortSorters = true;
     public List<MaterialFilter> filters = new ArrayList<>();
     public boolean needReSortFilters = true;
 
-    public MaterManager() {
+    public MaterialManager() {
         registerSorter(MaterialSorter.NONE);
         registerSorter(materialData -> materialData.primary, "ehp.sorter.primary");
         registerSorter(materialData -> materialData.secondary, "ehp.sorter.secondary");

@@ -11,9 +11,7 @@ import se.mickelus.tetra.items.modular.impl.bow.ModularBowItem;
 import se.mickelus.tetra.items.modular.impl.crossbow.ModularCrossbowItem;
 import se.mickelus.tetra.items.modular.impl.shield.ModularShieldItem;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class StatBarShowManager {
     public static class Internal {
@@ -34,6 +32,18 @@ public class StatBarShowManager {
         registerAllowWithGroup("shield", "tetra.stats.blocking_reflect");
         registerAllowWithGroup("ranged", "tetra.stats.spread", "tetra.stats.draw_speed", "tetra.stats.draw_strength");
         //registerSimplyHandle("tetra.stats.throwable", checkItem -> ShowResult.SUCCESS);
+    }
+
+    public static void addGroupItem(String group, Item... item) {
+        getInstance().addItemInGroup(group, item);
+    }
+
+    public static Set<String> getAllGroups() {
+        return getInstance().ItemGroup.keySet();
+    }
+
+    public static Collection<Item> getItemsInGroup(String group) {
+        return getInstance().ItemGroup.get(group);
     }
 
     public static StatBarShowManager getInstance() {

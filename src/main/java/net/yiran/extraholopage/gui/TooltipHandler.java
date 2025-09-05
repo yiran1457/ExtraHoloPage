@@ -4,6 +4,7 @@ import com.google.common.collect.Multimap;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraftforge.client.event.ScreenEvent;
@@ -27,6 +28,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 import static net.yiran.extraholopage.gui.ComponentHelper.*;
 import static net.yiran.extraholopage.gui.MaterialTooltipHelper.*;
@@ -103,7 +105,16 @@ public class TooltipHandler {
         if (showNeedAdvancedTooltip && !event.getFlags().isAdvanced()) return;
         List<Component> originToolTip = event.getToolTip();
         List<Component> toolTip = new ArrayList<>();
-        List<MaterialData> pMaterialData = DataManager.instance.materialData.getData().values().stream().filter(d -> d.material.getPredicate() != null && d.material.getPredicate().matches(event.getItemStack())).toList();
+        Map<MaterialData, ResourceLocation> map = DataManager.instance.materialData.getData()
+                .entrySet()
+                .stream()
+                .filter(d -> d.getValue().material.getPredicate() != null && d.getValue().material.getPredicate().matches(event.getItemStack()))
+                .collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey));
+
+        //List<MaterialData> pMaterialData = DataManager.instance.materialData.getData().values().stream().filter(d -> d.material.getPredicate() != null && d.material.getPredicate().matches(event.getItemStack())).toList();
+
+        List<MaterialData> pMaterialData = map.keySet().stream().toList();
+
         size = pMaterialData.size();
         if (size == 0) return;
         if (!isCtrl()) {
@@ -119,6 +130,8 @@ public class TooltipHandler {
             }
 
             MaterialData materialData = pMaterialData.get(index);
+            if (Config.SHOW_SOURCE.get())
+                toolTip.add((addPrefix(translatable("tetra.holo.craft.materials.stat.source", color1), literal(map.get(materialData).toString(), color1))));
             if (Config.SHOW_CATEGORY.get())
                 toolTip.add(addPrefix(translatable("tetra.holo.craft.materials.stat.category", color1), translatable("tetra.variant_category." + materialData.category + ".label", color1)));
             if (Config.SHOW_DURABILITY.get())
@@ -138,6 +151,8 @@ public class TooltipHandler {
                 addIfNotZero(toolTip, "integrityGain", materialData.integrityGain);
                 addIfNotZero(toolTip, "integrityCost", materialData.integrityCost);
             }
+            if (Config.SHOW_XP_COST.get())
+                addIfNotZero(toolTip, "magicCapacity", materialData.magicCapacity);
             if (Config.SHOW_REQUIRED_TOOL.get())
                 addRequiredToolTooltip(toolTip, materialData.requiredTools);
             if (Config.SHOW_ATTRIBUTES.get())

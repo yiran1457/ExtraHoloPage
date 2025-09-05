@@ -5,7 +5,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.resources.ResourceLocation;
 import net.yiran.extraholopage.ExtraHoloPage;
-import net.yiran.extraholopage.api.MaterManager;
+import net.yiran.extraholopage.api.MaterialManager;
 import se.mickelus.mutil.gui.GuiButton;
 import se.mickelus.mutil.gui.GuiElement;
 import se.mickelus.mutil.gui.GuiTexture;
@@ -34,7 +34,7 @@ public class GuiSorter extends GuiElement {
             clearChildren();
             var index = -10;
             var wight = 0;
-            for (MaterialSorter sorter : MaterManager.INSTANCE.getSorters()) {
+            for (MaterialSorter sorter : MaterialManager.INSTANCE.getSorters()) {
                 addChild(new GuiButton(0, index += 10, sorter.getName(), () -> {
                     setForceSorter(sorter);
                     updateGroups.run();

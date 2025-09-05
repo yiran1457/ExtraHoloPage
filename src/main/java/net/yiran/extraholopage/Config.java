@@ -14,6 +14,7 @@ public class Config {
     public static final ForgeConfigSpec.ConfigValue<Boolean> SHOW_NEED_ADVANCED_TOOLTIP;
     public static final ForgeConfigSpec.ConfigValue<Boolean> SHOW_REQUIRED_TOOL;
     public static final ForgeConfigSpec.ConfigValue<Boolean> SHOW_DURABILITY;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> SHOW_SOURCE;
     public static final ForgeConfigSpec.ConfigValue<Boolean> SHOW_CATEGORY;
     public static final ForgeConfigSpec.ConfigValue<Boolean> SHOW_BASIC;
     public static final ForgeConfigSpec.ConfigValue<Boolean> SHOW_XP_COST;
@@ -63,6 +64,9 @@ public class Config {
         SHOW_DURABILITY =BUILDER
                 .comment("是否在tooltip里面提示材料基础耐久度")
                 .define("showDurability", true);
+        SHOW_SOURCE = BUILDER
+                .comment("是否在tooltip里面提示材料来源文件")
+                .define("showSource", false);
         SHOW_CATEGORY = BUILDER
                 .comment("是否在tooltip里面提示材料类型")
                 .define("showCategory", true);
