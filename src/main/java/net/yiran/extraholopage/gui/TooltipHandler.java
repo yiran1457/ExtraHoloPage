@@ -14,7 +14,9 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.yiran.extraholopage.Config;
+import net.yiran.extraholopage.KeyMappingHandler;
 import net.yiran.extraholopage.api.TooltipRegistries;
+import net.yiran.extraholopage.util.KeyMappingUtil;
 import se.mickelus.tetra.aspect.ItemAspect;
 import se.mickelus.tetra.data.DataManager;
 import se.mickelus.tetra.effect.ItemEffect;
@@ -117,10 +119,11 @@ public class TooltipHandler {
 
         size = pMaterialData.size();
         if (size == 0) return;
-        if (!isCtrl()) {
-            toolTip.add(Component.literal("§7[§8ctrl§7]§8 +"));
+        var keybindname = KeyMappingUtil.getKeyMappingName(KeyMappingHandler.showTooltip);
+        if (!KeyMappingUtil.isKeyMappingPressed(KeyMappingHandler.showTooltip)) {
+            toolTip.add(Component.literal("§7[§8 " + keybindname + " §7]§8 +"));
         } else {
-            toolTip.add(Component.literal("§8[§fctrl§8]§f +"));
+            toolTip.add(Component.literal("§8[§f " + keybindname + " §8]§f +"));
             if (index >= size) {
                 index = 0;
             }
