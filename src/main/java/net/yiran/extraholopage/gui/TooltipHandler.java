@@ -64,7 +64,7 @@ public class TooltipHandler {
             isSelected = false;
         }
         if (size < 2) return;
-        if (!isCtrl()) {
+        if (!KeyMappingUtil.isKeyMappingPressed(KeyMappingHandler.showTooltip)) {
             nowProgress = 0;
         } else {
             if (lastScrolledTick > 1)
@@ -119,11 +119,11 @@ public class TooltipHandler {
 
         size = pMaterialData.size();
         if (size == 0) return;
-        var keybindname = KeyMappingUtil.getKeyMappingName(KeyMappingHandler.showTooltip);
+        var keyMappingName = KeyMappingUtil.getKeyMappingName(KeyMappingHandler.showTooltip);
         if (!KeyMappingUtil.isKeyMappingPressed(KeyMappingHandler.showTooltip)) {
-            toolTip.add(Component.literal("§7[§8 " + keybindname + " §7]§8 +"));
+            toolTip.add(Component.literal("§7[§8 " + keyMappingName + " §7]§8 +"));
         } else {
-            toolTip.add(Component.literal("§8[§f " + keybindname + " §8]§f +"));
+            toolTip.add(Component.literal("§8[§f " + keyMappingName + " §8]§f +"));
             if (index >= size) {
                 index = 0;
             }
