@@ -36,6 +36,10 @@ public class MaterialManager {
         registerFilter(materialData -> materialData.attributes != null, "ehp.filter.hasAttribute");
     }
 
+    public void removeFilter(String name) {
+        filters.removeIf(filter -> filter.name.equals(name));
+    }
+
     public void registerFilter(MaterialFilter filter) {
         filters.add(filter);
         needReSortFilters = true;
@@ -47,6 +51,10 @@ public class MaterialManager {
 
     public void registerFilter(Function<MaterialData, Boolean> filter, String name) {
         registerFilter(filter, name, 0);
+    }
+
+    public void removeSorter(String name) {
+        sorters.removeIf(sorter -> sorter.name.equals(name));
     }
 
     public void registerSorter(MaterialSorter sorter) {
