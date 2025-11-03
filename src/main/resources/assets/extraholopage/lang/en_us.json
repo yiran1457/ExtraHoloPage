@@ -36,6 +36,8 @@
   "ehp.filter.desc": "F",
   "ehp.filter.NONE": "NONE",
   "ehp.filter.hasEffect": "Has Effect",
-  "ehp.filter.hasAttribute": "Has Attribute"
+  "ehp.filter.hasAttribute": "Has Attribute",
+  "overhaul.format": " (%s)",
+  "overhaul.default": "Default"
 
 }

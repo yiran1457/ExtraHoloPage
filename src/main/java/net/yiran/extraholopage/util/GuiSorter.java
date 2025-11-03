@@ -29,6 +29,7 @@ public class GuiSorter extends GuiElement {
         var forceString = I18n.get("ehp.sorter.desc") + " : " + forceSorter.getName();
         var wight1 = Minecraft.getInstance().font.width(forceString);
         guiFilter.setX(getX() + wight1 + 10);
+        guiFilter.resetFilters();
         addChild(new GuiTexture(-2, -2, wight1 + 4, 10 + 4, texture));
         addChild(new GuiButton(0, 0, forceString, () -> {
             clearChildren();
@@ -44,6 +45,7 @@ public class GuiSorter extends GuiElement {
 
             }
             guiFilter.setX(getX() + wight + 10);
+            guiFilter.resetFilters();
             var wight2 = wight;
             getChildren(GuiButton.class).forEach(button -> {
                 button.setWidth(wight2);

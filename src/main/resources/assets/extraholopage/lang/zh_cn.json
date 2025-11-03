@@ -36,5 +36,7 @@
   "ehp.filter.desc": "过滤",
   "ehp.filter.NONE": "NONE",
   "ehp.filter.hasEffect": "自带Effect",
-  "ehp.filter.hasAttribute": "自带属性"
+  "ehp.filter.hasAttribute": "自带属性",
+  "overhaul.format": " (%s)",
+  "overhaul.default": "默认"
 }

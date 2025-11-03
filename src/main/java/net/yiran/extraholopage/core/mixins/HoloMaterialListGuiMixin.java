@@ -34,12 +34,18 @@ public abstract class HoloMaterialListGuiMixin extends GuiElement {
     @Unique
     public GuiSorter guiSorter;
     @Unique
-    public GuiFilter guiFilter;
+    public GuiFilter guiFilter1;
+    @Unique
+    public GuiFilter guiFilter2;
+    @Unique
+    public GuiFilter guiFilter3;
 
     @Inject(method = "<init>", at = @At(value = "RETURN"))
     private void jjj(int x, int y, int width, int height, CallbackInfo ci) {
-        addChild(guiFilter = new GuiFilter(0, y - 36, width, height, this::updateGroups));
-        addChild(guiSorter = new GuiSorter(x + 60, y - 36, width, height, this::updateGroups, guiFilter));
+        addChild(guiFilter1 = new GuiFilter(0, y - 36, width, height, this::updateGroups, null));
+        addChild(guiFilter2 = new GuiFilter(0, y - 36, width, height, this::updateGroups, guiFilter1));
+        addChild(guiFilter3 = new GuiFilter(0, y - 36, width, height, this::updateGroups, guiFilter2));
+        addChild(guiSorter = new GuiSorter(x + 60, y - 36, width, height, this::updateGroups, guiFilter3));
     }
 
     @Shadow
@@ -67,8 +73,20 @@ public abstract class HoloMaterialListGuiMixin extends GuiElement {
 
         return original.call(instance, predicate)
                 .filter(m -> {
-                    if (guiFilter != null) {
-                        return guiFilter.forceFiler.shouldShow(m);
+                    if (guiFilter1 != null) {
+                        return guiFilter1.forceFiler.shouldShow(m);
+                    }
+                    return true;
+                })
+                .filter(m -> {
+                    if (guiFilter2 != null) {
+                        return guiFilter2.forceFiler.shouldShow(m);
+                    }
+                    return true;
+                })
+                .filter(m -> {
+                    if (guiFilter3 != null) {
+                        return guiFilter3.forceFiler.shouldShow(m);
                     }
                     return true;
                 })

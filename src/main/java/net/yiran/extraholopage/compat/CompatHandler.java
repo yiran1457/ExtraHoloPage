@@ -6,9 +6,11 @@ import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.yiran.extraholopage.api.ExtraHoloRegister;
+import net.yiran.tmo.TetraMaterialOverhaul;
 
 public class CompatHandler {
     public static ResourceLocation HOLO = new ResourceLocation("extraholopage", "textures/gui/holo.png");
+    public static boolean OverhaulIsLoaded = ModList.get().isLoaded(TetraMaterialOverhaul.MODID);
     public static void onClientSetup(FMLClientSetupEvent event) {
         if (ModList.get().isLoaded("art_of_forging"))
             AoF_Compat();
@@ -28,4 +30,6 @@ public class CompatHandler {
         ExtraHoloRegister.register(item)
                 .setTexture(HOLO,38,0);
     }
+
+
 }

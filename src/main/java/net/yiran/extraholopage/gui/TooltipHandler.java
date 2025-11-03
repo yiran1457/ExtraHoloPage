@@ -1,6 +1,8 @@
 package net.yiran.extraholopage.gui;
 
+import com.google.common.base.Suppliers;
 import com.google.common.collect.Multimap;
+import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -16,6 +18,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.yiran.extraholopage.Config;
 import net.yiran.extraholopage.KeyMappingHandler;
 import net.yiran.extraholopage.api.TooltipRegistries;
+import net.yiran.extraholopage.compat.CompatHandler;
+import net.yiran.extraholopage.compat.OverhaulCompat;
 import net.yiran.extraholopage.util.KeyMappingUtil;
 import se.mickelus.tetra.aspect.ItemAspect;
 import se.mickelus.tetra.data.DataManager;
@@ -24,11 +28,10 @@ import se.mickelus.tetra.module.data.AspectData;
 import se.mickelus.tetra.module.data.EffectData;
 import se.mickelus.tetra.module.data.MaterialData;
 import se.mickelus.tetra.module.data.ToolData;
+import se.mickelus.tetra.module.schematic.MaterialOutcomeDefinition;
+import se.mickelus.tetra.module.schematic.UniqueOutcomeDefinition;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -36,7 +39,7 @@ import static net.yiran.extraholopage.gui.ComponentHelper.*;
 import static net.yiran.extraholopage.gui.MaterialTooltipHelper.*;
 
 public class TooltipHandler {
-    public static Supplier<TooltipHandler> INSTANCE = TooltipHandler::new;
+    public static Supplier<TooltipHandler> INSTANCE = Suppliers.memoize(TooltipHandler::new);
 
     public TooltipHandler() {
         progressLength = Config.PROGRESS_SHOW_TICK.get();
@@ -112,10 +115,9 @@ public class TooltipHandler {
                 .stream()
                 .filter(d -> d.getValue().material.getPredicate() != null && d.getValue().material.getPredicate().matches(event.getItemStack()))
                 .collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey));
+        List<MaterialData> pMaterialData = DataManager.instance.materialData.getData().values().stream().filter(d -> d.material.getPredicate() != null && d.material.getPredicate().matches(event.getItemStack())).toList();
 
-        //List<MaterialData> pMaterialData = DataManager.instance.materialData.getData().values().stream().filter(d -> d.material.getPredicate() != null && d.material.getPredicate().matches(event.getItemStack())).toList();
-
-        List<MaterialData> pMaterialData = map.keySet().stream().toList();
+        //List<MaterialData> pMaterialData = map.keySet().stream().toList();
 
         size = pMaterialData.size();
         if (size == 0) return;
@@ -159,9 +161,15 @@ public class TooltipHandler {
             if (Config.SHOW_REQUIRED_TOOL.get())
                 addRequiredToolTooltip(toolTip, materialData.requiredTools);
             if (Config.SHOW_ATTRIBUTES.get())
-                addAttributeTooltip(toolTip, materialData.attributes);
+                if (CompatHandler.OverhaulIsLoaded)
+                    OverhaulCompat.addAttributeTooltip(toolTip, materialData);
+                else
+                    addAttributeTooltip(toolTip, materialData.attributes);
             if (Config.SHOW_EFFECTS.get())
-                addEffectsTooltip(toolTip, materialData.effects);
+                if (CompatHandler.OverhaulIsLoaded)
+                    OverhaulCompat.addEffectsTooltip(toolTip, materialData);
+                else
+                    addEffectsTooltip(toolTip, materialData.effects);
             if (Config.SHOW_ASPECTS.get())
                 addAspectsTooltip(toolTip, materialData.aspects);
             if (Config.SHOW_IMPROVEMENTS.get())

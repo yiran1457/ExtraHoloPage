@@ -13,19 +13,27 @@ import se.mickelus.mutil.gui.GuiTexture;
 public class GuiFilter extends GuiElement {
     public static ResourceLocation texture = new ResourceLocation(ExtraHoloPage.MODID, "textures/gui/back.png");
     public MaterialFilter forceFiler;
+    public GuiFilter afterFilter;
     public Runnable updateGroups;
 
-    public GuiFilter(int x, int y, int width, int height, Runnable runnable) {
+    public GuiFilter(int x, int y, int width, int height, Runnable runnable, GuiFilter beforeFilter) {
         super(x, y, width, height);
         forceFiler = MaterialFilter.NONE;
+        this.afterFilter = beforeFilter;
         updateGroups = runnable;
         resetFilters();
     }
 
     public void resetFilters() {
         clearChildren();
-        addChild(new GuiTexture(-2, -2, Minecraft.getInstance().font.width(I18n.get("ehp.filter.desc") + " : " + forceFiler.getName()) + 4, 10 + 4, texture));
-        addChild(new GuiButton(0, 0, I18n.get("ehp.filter.desc") + " : " + forceFiler.getName(), () -> {
+        var forceString = I18n.get("ehp.filter.desc") + " : " + forceFiler.getName();
+        var wight1 = Minecraft.getInstance().font.width(forceString);
+        if (this.afterFilter != null) {
+            this.afterFilter.setX(getX() + wight1 + 10);
+            this.afterFilter.resetFilters();
+        }
+        addChild(new GuiTexture(-2, -2, wight1 + 4, 10 + 4, texture));
+        addChild(new GuiButton(0, 0, forceString, () -> {
             clearChildren();
             var index = -10;
             var wight = 0;
@@ -37,6 +45,10 @@ public class GuiFilter extends GuiElement {
                 }));
                 wight = Math.max(wight, Minecraft.getInstance().font.width(filter.getName()));
 
+            }
+            if (this.afterFilter != null) {
+                this.afterFilter.setX(getX() + wight1 + 10);
+                this.afterFilter.resetFilters();
             }
             var wight2 = wight;
             getChildren(GuiButton.class).forEach(button -> {
