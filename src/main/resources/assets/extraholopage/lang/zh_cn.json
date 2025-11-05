@@ -37,6 +37,7 @@
   "ehp.filter.NONE": "NONE",
   "ehp.filter.hasEffect": "自带Effect",
   "ehp.filter.hasAttribute": "自带属性",
-  "overhaul.format": " (%s)",
+  "overhaul.format": " ( %s )",
+  "overhaul.merge.format": "%s / %s",
   "overhaul.default": "默认"
 }

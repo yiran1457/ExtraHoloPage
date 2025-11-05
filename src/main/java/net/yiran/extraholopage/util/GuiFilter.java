@@ -47,7 +47,7 @@ public class GuiFilter extends GuiElement {
 
             }
             if (this.afterFilter != null) {
-                this.afterFilter.setX(getX() + wight1 + 10);
+                this.afterFilter.setX(getX() + wight + 10);
                 this.afterFilter.resetFilters();
             }
             var wight2 = wight;

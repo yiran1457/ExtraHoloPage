@@ -9,6 +9,7 @@ public class Config {
     public static final ForgeConfigSpec.ConfigValue<Boolean> HOLO_SHOW_ALL_RARITY;
     public static final ForgeConfigSpec.ConfigValue<Boolean> IGNORE_HOLO_ITEM;
     public static final ForgeConfigSpec.ConfigValue<Integer> HOLO_MATERIAL_LINE;
+    public static final ForgeConfigSpec.ConfigValue<Integer> HOLO_MODULE_LINE;
     public static final ForgeConfigSpec.ConfigValue<Integer> MODIFY_IMPROVEMENT_SPACING;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_MATERIAL_TOOLTIP;
     public static final ForgeConfigSpec.ConfigValue<Boolean> SHOW_NEED_ADVANCED_TOOLTIP;
@@ -46,6 +47,10 @@ public class Config {
                 .comment("修改全息球显示材料行数")
                 .comment("midify material line in holo")
                 .define("holoMaterialLine", 2);
+        HOLO_MODULE_LINE = BUILDER
+                .comment("修改全息球显示模块行数")
+                .comment("midify module line in holo")
+                .define("holoModuleLine", 2);
         MODIFY_IMPROVEMENT_SPACING = BUILDER
                 .comment("修改改进间距。")
                 .comment("Modify Improvement spacing.")

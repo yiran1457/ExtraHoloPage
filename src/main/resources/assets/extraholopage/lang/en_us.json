@@ -37,7 +37,8 @@
   "ehp.filter.NONE": "NONE",
   "ehp.filter.hasEffect": "Has Effect",
   "ehp.filter.hasAttribute": "Has Attribute",
-  "overhaul.format": " (%s)",
+  "overhaul.format": " ( %s )",
+  "overhaul.merge.format": "%s / %s",
   "overhaul.default": "Default"
 
 }

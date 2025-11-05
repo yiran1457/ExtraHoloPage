@@ -16,7 +16,9 @@
     "HoloMaterialApplicableMixin",
     "HoloMaterialListGuiMixin",
     "HoloPageMixin",
+    "HoloSchematicGuiMixin",
     "HoloVariantItemGuiMixin",
+    "HoloVariantListGuiMixin",
     "StatBarStoreMixin",
     "ToolActionIconStoreMixin"
   ],
