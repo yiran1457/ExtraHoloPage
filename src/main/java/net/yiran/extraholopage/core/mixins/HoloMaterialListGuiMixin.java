@@ -4,6 +4,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.yiran.extraholopage.Config;
+import net.yiran.extraholopage.core.IHoloMaterialListGui;
 import net.yiran.extraholopage.util.GuiFilter;
 import net.yiran.extraholopage.util.GuiSorter;
 import net.yiran.extraholopage.util.MyHoloMaterialGroupGui;
@@ -14,6 +15,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import se.mickelus.mutil.gui.GuiElement;
 import se.mickelus.mutil.gui.impl.GuiHorizontalLayoutGroup;
 import se.mickelus.tetra.items.modular.impl.holo.gui.craft.HoloMaterialDetailGui;
@@ -26,7 +28,7 @@ import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 @Mixin(value = HoloMaterialListGui.class, remap = false)
-public abstract class HoloMaterialListGuiMixin extends GuiElement {
+public abstract class HoloMaterialListGuiMixin extends GuiElement implements IHoloMaterialListGui {
     public HoloMaterialListGuiMixin(int x, int y, int width, int height) {
         super(x, y, width, height);
     }
@@ -40,12 +42,28 @@ public abstract class HoloMaterialListGuiMixin extends GuiElement {
     @Unique
     public GuiFilter guiFilter3;
 
+    @Inject(method = "onMouseClick",at = @At("RETURN"))
+    private void ppp(int x, int y, int button, CallbackInfoReturnable<Boolean> cir){
+        if(cir.getReturnValue())return;
+        resetAllSF();
+    }
+
     @Inject(method = "<init>", at = @At(value = "RETURN"))
     private void jjj(int x, int y, int width, int height, CallbackInfo ci) {
-        addChild(guiFilter1 = new GuiFilter(0, y - 36, width, height, this::updateGroups, null));
-        addChild(guiFilter2 = new GuiFilter(0, y - 36, width, height, this::updateGroups, guiFilter1));
-        addChild(guiFilter3 = new GuiFilter(0, y - 36, width, height, this::updateGroups, guiFilter2));
-        addChild(guiSorter = new GuiSorter(x + 60, y - 36, width, height, this::updateGroups, guiFilter3));
+        addChild(guiFilter1 = new GuiFilter(0, y - 36, width, height, this::updateGroups, null, this));
+        addChild(guiFilter2 = new GuiFilter(0, y - 36, width, height, this::updateGroups, guiFilter1, this));
+        addChild(guiFilter3 = new GuiFilter(0, y - 36, width, height, this::updateGroups, guiFilter2, this));
+        addChild(guiSorter = new GuiSorter(x + 60, y - 36, width, height, this::updateGroups, guiFilter3, this));
+    }
+
+    @Override
+    public GuiFilter[] getHoloFilters() {
+        return new GuiFilter[]{guiFilter1, guiFilter2, guiFilter3};
+    }
+
+    @Override
+    public GuiSorter getGuiSorter() {
+        return guiSorter;
     }
 
     @Shadow
@@ -74,25 +92,25 @@ public abstract class HoloMaterialListGuiMixin extends GuiElement {
         return original.call(instance, predicate)
                 .filter(m -> {
                     if (guiFilter1 != null) {
-                        return guiFilter1.forceFiler.shouldShow(m);
+                        return guiFilter1.focusFiler.shouldShow(m);
                     }
                     return true;
                 })
                 .filter(m -> {
                     if (guiFilter2 != null) {
-                        return guiFilter2.forceFiler.shouldShow(m);
+                        return guiFilter2.focusFiler.shouldShow(m);
                     }
                     return true;
                 })
                 .filter(m -> {
                     if (guiFilter3 != null) {
-                        return guiFilter3.forceFiler.shouldShow(m);
+                        return guiFilter3.focusFiler.shouldShow(m);
                     }
                     return true;
                 })
                 .sorted((a, b) -> {
                     if (guiSorter != null) {
-                        return -Float.compare(guiSorter.forceSorter.getPriority(a), guiSorter.forceSorter.getPriority(b));
+                        return -Float.compare(guiSorter.focusSorter.getPriority(a), guiSorter.focusSorter.getPriority(b));
                     }
                     return 0;
                 });

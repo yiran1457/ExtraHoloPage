@@ -69,7 +69,7 @@ public class MyHoloVariantGroupGui extends GuiElement {
                                 new Applier.TranslateY(-5, 0, true))
                         .withDelay(40 + 40 * (offset + i) / line);
 
-                width = variant.getX() + variant.getWidth() - (i % line % 2) * 10;
+                width = variant.getX() + variant.getWidth() + 20 - (i % line % 2) * 10;
             }
         }
 

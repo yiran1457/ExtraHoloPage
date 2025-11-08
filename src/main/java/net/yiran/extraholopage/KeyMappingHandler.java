@@ -10,18 +10,30 @@ public class KeyMappingHandler {
     public static KeyMapping openHolo = new KeyMapping(
             "ehp.open_holo_gui",
             GLFW.GLFW_KEY_H,
-            "tetra.binding.group"
+            "ehp.binding.group"
     );
 
     public static KeyMapping showTooltip = new KeyMapping(
             "ehp.show_material_tooltip",
             GLFW.GLFW_KEY_LEFT_CONTROL,
-            "tetra.binding.group"
+            "ehp.binding.group"
+    );
+    public static KeyMapping nextElement = new KeyMapping(
+            "ehp.next_elements_page",
+            GLFW.GLFW_KEY_RIGHT,
+            "ehp.binding.group"
+    );
+    public static KeyMapping previousElement = new KeyMapping(
+            "ehp.previous_elements_page",
+            GLFW.GLFW_KEY_LEFT,
+            "ehp.binding.group"
     );
 
     public static void onRegisterKeyMapping(RegisterKeyMappingsEvent event) {
         event.register(openHolo);
         event.register(showTooltip);
+        event.register(nextElement);
+        event.register(previousElement);
     }
 
     public static void onClientTick(TickEvent.ClientTickEvent event) {

@@ -37,7 +37,12 @@
   "ehp.filter.NONE": "NONE",
   "ehp.filter.hasEffect": "自带Effect",
   "ehp.filter.hasAttribute": "自带属性",
+  "---format---": "FORMAT",
   "overhaul.format": " ( %s )",
   "overhaul.merge.format": "%s / %s",
-  "overhaul.default": "默认"
+  "ehp.page_info.format": "1  <   %s   >  %s",
+  "overhaul.default": "默认",
+  "ehp.binding.group": "ExtraHoloPage",
+  "ehp.next_elements_page": "翻到下一页元素",
+  "ehp.previous_elements_page": "翻到上一页元素",
 }

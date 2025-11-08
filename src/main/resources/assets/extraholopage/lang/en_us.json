@@ -37,8 +37,13 @@
   "ehp.filter.NONE": "NONE",
   "ehp.filter.hasEffect": "Has Effect",
   "ehp.filter.hasAttribute": "Has Attribute",
+  "---format---": "FORMAT",
   "overhaul.format": " ( %s )",
   "overhaul.merge.format": "%s / %s",
-  "overhaul.default": "Default"
+  "ehp.page_info.format": "1  <   %s   >  %s",
+  "overhaul.default": "Default",
+  "ehp.binding.group": "ExtraHoloPage",
+  "ehp.next_elements_page": "Next Elements page",
+  "ehp.previous_elements_page": "Previous Elements page"
 
 }

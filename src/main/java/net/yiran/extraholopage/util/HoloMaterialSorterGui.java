@@ -31,8 +31,8 @@ public class HoloMaterialSorterGui extends GuiClickable {
         this.addChild(this.backdrop);
         this.icon = (new GuiItemRolling(0, 0)).setTooltip(false).setCountVisibility(GuiItem.CountMode.never).setItems(material.material.getApplicableItemStacks());
         this.addChild(this.icon);
-        if (guiSorter != null && guiSorter.getForceSorter() != MaterialSorter.NONE) {
-            var sting = String.valueOf(guiSorter.getForceSorter().getPriority(material));
+        if (guiSorter != null && guiSorter.getFocusSorter() != MaterialSorter.NONE) {
+            var sting = String.valueOf(guiSorter.getFocusSorter().getPriority(material));
             if (sting.endsWith(".0")) {
                 sting = sting.substring(0, sting.length() - 2);
             }

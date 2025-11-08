@@ -10,6 +10,7 @@ public class Config {
     public static final ForgeConfigSpec.ConfigValue<Boolean> IGNORE_HOLO_ITEM;
     public static final ForgeConfigSpec.ConfigValue<Integer> HOLO_MATERIAL_LINE;
     public static final ForgeConfigSpec.ConfigValue<Integer> HOLO_MODULE_LINE;
+    public static final ForgeConfigSpec.ConfigValue<Integer> SHOW_FILTER_AND_SORTER_ELEMENTS;
     public static final ForgeConfigSpec.ConfigValue<Integer> MODIFY_IMPROVEMENT_SPACING;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_MATERIAL_TOOLTIP;
     public static final ForgeConfigSpec.ConfigValue<Boolean> SHOW_NEED_ADVANCED_TOOLTIP;
@@ -55,6 +56,9 @@ public class Config {
                 .comment("修改改进间距。")
                 .comment("Modify Improvement spacing.")
                 .define("modify_improvement_spacing", 28);
+        SHOW_FILTER_AND_SORTER_ELEMENTS = BUILDER
+                .comment("在材料页面显示sorter和filter的数量")
+                .define("showFilterAndSorterElements", 10);
 
         BUILDER.push("Tooltip");
         ENABLE_MATERIAL_TOOLTIP = BUILDER
@@ -66,7 +70,7 @@ public class Config {
         SHOW_REQUIRED_TOOL = BUILDER
                 .comment("是否在tooltip里面提示需求工具等级")
                 .define("showRequiredTool", true);
-        SHOW_DURABILITY =BUILDER
+        SHOW_DURABILITY = BUILDER
                 .comment("是否在tooltip里面提示材料基础耐久度")
                 .define("showDurability", true);
         SHOW_SOURCE = BUILDER
