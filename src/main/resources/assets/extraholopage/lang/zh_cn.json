@@ -41,8 +41,17 @@
   "overhaul.format": " ( %s )",
   "overhaul.merge.format": "%s / %s",
   "ehp.page_info.format": "1  <   %s   >  %s",
+  "ehp.scroll.tooltip.slots.merge.format": " §r/ ",
+  "ehp.special.material.tooltip.slots.merge.format": "§r、 ",
+  "ehp.scroll.tooltip.slots.extra.format": "§r(§6%s+§r)§r",
+  "ehp.scroll.tooltip.total.format": "【 %s 】<%s>  [%s]",
+  "ehp.special.material.tooltip.total.format": "[%1$s] 可于 < %2$s§r > 制作",
+  "---misc---": "MISC",
+  "ehp.special.material.shift.release.tooltip": "此物品可作为特殊原材料[ shift+ ]",
+  "ehp.special.material.shift.press.tooltip": "此物品可作为特殊原材料[ shift+ ]",
+  "ehp.scroll.tooltip.module.empty": "任意模块",
   "overhaul.default": "默认",
   "ehp.binding.group": "ExtraHoloPage",
   "ehp.next_elements_page": "翻到下一页元素",
-  "ehp.previous_elements_page": "翻到上一页元素",
+  "ehp.previous_elements_page": "翻到上一页元素"
 }

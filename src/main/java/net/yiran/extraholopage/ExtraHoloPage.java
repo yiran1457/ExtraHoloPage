@@ -8,6 +8,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.yiran.extraholopage.compat.CompatHandler;
 import net.yiran.extraholopage.gui.MaterialTooltipHelper;
+import net.yiran.extraholopage.gui.ScrollTooltipHandler;
+import net.yiran.extraholopage.gui.SpecialMaterialTooltipHandler;
 import net.yiran.extraholopage.gui.TooltipHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -35,6 +37,14 @@ public class ExtraHoloPage {
     }
 
     public void onCommonSetup(FMLCommonSetupEvent event) {
+        if (Config.ENABLE_SCROLL_TOOLTIP.get()) {
+            MinecraftForge.EVENT_BUS.register(ScrollTooltipHandler.INSTANCE.get());
+            ScrollTooltipHandler.init();
+        }
+        if (Config.ENABLE_SPECIAL_MATERIAL_TOOLTIP.get()) {
+            MinecraftForge.EVENT_BUS.register(SpecialMaterialTooltipHandler.INSTANCE.get());
+            SpecialMaterialTooltipHandler.INSTANCE.get().init();
+        }
         if (Config.ENABLE_MATERIAL_TOOLTIP.get()) {
             TooltipHandler tooltipHandler = TooltipHandler.INSTANCE.get();
             MinecraftForge.EVENT_BUS.register(tooltipHandler);

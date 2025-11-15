@@ -13,6 +13,8 @@ public class Config {
     public static final ForgeConfigSpec.ConfigValue<Integer> SHOW_FILTER_AND_SORTER_ELEMENTS;
     public static final ForgeConfigSpec.ConfigValue<Integer> MODIFY_IMPROVEMENT_SPACING;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_MATERIAL_TOOLTIP;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_SPECIAL_MATERIAL_TOOLTIP;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_SCROLL_TOOLTIP;
     public static final ForgeConfigSpec.ConfigValue<Boolean> SHOW_NEED_ADVANCED_TOOLTIP;
     public static final ForgeConfigSpec.ConfigValue<Boolean> SHOW_REQUIRED_TOOL;
     public static final ForgeConfigSpec.ConfigValue<Boolean> SHOW_DURABILITY;
@@ -61,6 +63,12 @@ public class Config {
                 .define("showFilterAndSorterElements", 10);
 
         BUILDER.push("Tooltip");
+        ENABLE_SCROLL_TOOLTIP = BUILDER
+                .comment("是否启用添加卷轴Tooltip-修改此配置需重启生效")
+                .define("enableScrollTooltip", true);
+        ENABLE_SPECIAL_MATERIAL_TOOLTIP = BUILDER
+                .comment("是否启用添加特殊材料Tooltip-修改此配置需重启生效")
+                .define("enableSpecialMaterialTooltip", true);
         ENABLE_MATERIAL_TOOLTIP = BUILDER
                 .comment("是否启用添加材料Tooltip-修改此配置需重启生效")
                 .define("enableMaterialTooltip", false);

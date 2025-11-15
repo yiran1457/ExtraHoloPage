@@ -2,7 +2,6 @@ package net.yiran.extraholopage.gui;
 
 import com.google.common.base.Suppliers;
 import com.google.common.collect.Multimap;
-import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -28,10 +27,11 @@ import se.mickelus.tetra.module.data.AspectData;
 import se.mickelus.tetra.module.data.EffectData;
 import se.mickelus.tetra.module.data.MaterialData;
 import se.mickelus.tetra.module.data.ToolData;
-import se.mickelus.tetra.module.schematic.MaterialOutcomeDefinition;
-import se.mickelus.tetra.module.schematic.UniqueOutcomeDefinition;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
