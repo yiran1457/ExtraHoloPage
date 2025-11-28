@@ -47,6 +47,7 @@
   "ehp.scroll.tooltip.total.format": "【 %s 】<%s>  [%s]",
   "ehp.special.material.tooltip.total.format": "[%1$s] can be crafted in slot < %2$s§r >",
   "---misc---": "MISC",
+  "ehp.holo.material.context.effect.tooltip": "§7[ §5%s §7]",
   "ehp.special.material.shift.release.tooltip": "This item can be used as a special raw material [shift+]",
   "ehp.special.material.shift.press.tooltip": "This item can be used as a special raw material [shift+]",
   "ehp.scroll.tooltip.module.empty": "Any Module",

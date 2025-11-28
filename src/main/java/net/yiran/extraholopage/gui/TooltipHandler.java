@@ -113,11 +113,12 @@ public class TooltipHandler {
         Map<MaterialData, ResourceLocation> map = DataManager.instance.materialData.getData()
                 .entrySet()
                 .stream()
+                .filter(this::filterHide)
                 .filter(d -> d.getValue().material.getPredicate() != null && d.getValue().material.getPredicate().matches(event.getItemStack()))
                 .collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey));
-        List<MaterialData> pMaterialData = DataManager.instance.materialData.getData().values().stream().filter(d -> d.material.getPredicate() != null && d.material.getPredicate().matches(event.getItemStack())).toList();
+        //List<MaterialData> pMaterialData = DataManager.instance.materialData.getData().values().stream().filter(d -> d.material.getPredicate() != null && d.material.getPredicate().matches(event.getItemStack())).toList();
 
-        //List<MaterialData> pMaterialData = map.keySet().stream().toList();
+        List<MaterialData> pMaterialData = map.keySet().stream().toList();
 
         size = pMaterialData.size();
         if (size == 0) return;
@@ -176,6 +177,10 @@ public class TooltipHandler {
                 addImprovementsTooltip(toolTip, materialData.improvements);
         }
         originToolTip.addAll(1, toolTip);
+    }
+
+    public boolean filterHide(Map.Entry<ResourceLocation, MaterialData> entry) {
+        return !Config.HIDE_MATERIAL_KEYS.get().contains(entry.getValue().key);
     }
 
     public void addImprovementsTooltip(List<Component> toolTip, Map<String, Integer> improvements) {

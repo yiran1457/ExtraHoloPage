@@ -47,6 +47,7 @@
   "ehp.scroll.tooltip.total.format": "【 %s 】<%s>  [%s]",
   "ehp.special.material.tooltip.total.format": "[%1$s] 可于 < %2$s§r > 制作",
   "---misc---": "MISC",
+  "ehp.holo.material.context.effect.tooltip": "§7[ §5%s §7]",
   "ehp.special.material.shift.release.tooltip": "此物品可作为特殊原材料[ shift+ ]",
   "ehp.special.material.shift.press.tooltip": "此物品可作为特殊原材料[ shift+ ]",
   "ehp.scroll.tooltip.module.empty": "任意模块",

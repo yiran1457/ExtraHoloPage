@@ -1,5 +1,6 @@
 package net.yiran.extraholopage.compat;
 
+import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
@@ -19,7 +20,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import static net.yiran.extraholopage.gui.ComponentHelper.*;
+import static net.yiran.extraholopage.gui.ComponentHelper.literal;
+import static net.yiran.extraholopage.gui.ComponentHelper.translatable;
 import static net.yiran.extraholopage.gui.MaterialTooltipHelper.*;
 
 public class OverhaulCompat {
@@ -83,10 +85,10 @@ public class OverhaulCompat {
     }
 
     public static void computeGroup(Map<MutableComponent, String> tooltipShowMap, MutableComponent tooltip, String newGroup) {
-        tooltipShowMap.compute(tooltip, (component, string) -> mergeGroup(component, string, newGroup));
+        tooltipShowMap.compute(tooltip, (component, string) -> mergeGroup( string, newGroup));
     }
 
-    public static String mergeGroup(MutableComponent component, String oldGroup, String newGroup) {
+    public static String mergeGroup( String oldGroup, String newGroup) {
         String group = I18n.exists("overhaul." + newGroup) ? I18n.get("overhaul." + newGroup) : newGroup;
         if (oldGroup == null) {
             return group;
@@ -96,6 +98,16 @@ public class OverhaulCompat {
 
     public static Map<String, ContextData> getContextData(MaterialData data) {
         return ((IMaterialData) data).getContextData();
+    }
+
+    public static Multimap<ItemEffect, String> getContextItemEffects(MaterialData data) {
+        Multimap<ItemEffect, String> result = HashMultimap.create();
+        for (Map.Entry<String, ContextData> entry : ((IMaterialData) data).getContextData().entrySet()) {
+            for (ItemEffect effect : entry.getValue().effects.getValues()) {
+                result.put(effect, entry.getKey());
+            }
+        }
+        return result;
     }
 
 }

@@ -128,11 +128,13 @@ dependencies {
     modCompileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.2.0-rc.2"))
     modImplementation("io.github.llamalad7:mixinextras-forge:0.2.0-rc.2")
 
-    modImplementation("curse.maven:modern-ui-352491:6199942")
-    modImplementation("curse.maven:ibe-editor-256822:4994072")
+    modRuntimeOnly("curse.maven:modern-ui-352491:6199942")
+    modRuntimeOnly("curse.maven:ibe-editor-256822:4994072")
 
     modImplementation("curse.maven:mutil-351914:6418901")
     modImplementation("curse.maven:tetra-289712:6418957")
+
+    modImplementation("curse.maven:just-enough-characters-250702:7176519")
 
     modImplementation("blank:TetraMaterialOverhaul-6.9.0:0.0.3")
 

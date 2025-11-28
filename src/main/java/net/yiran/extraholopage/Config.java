@@ -2,6 +2,9 @@ package net.yiran.extraholopage;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Config {
     public static final ForgeConfigSpec SPEC;
     private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
@@ -13,6 +16,7 @@ public class Config {
     public static final ForgeConfigSpec.ConfigValue<Integer> SHOW_FILTER_AND_SORTER_ELEMENTS;
     public static final ForgeConfigSpec.ConfigValue<Integer> MODIFY_IMPROVEMENT_SPACING;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_MATERIAL_TOOLTIP;
+    public static final ForgeConfigSpec.ConfigValue<List<String>> HIDE_MATERIAL_KEYS;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_SPECIAL_MATERIAL_TOOLTIP;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_SCROLL_TOOLTIP;
     public static final ForgeConfigSpec.ConfigValue<Boolean> SHOW_NEED_ADVANCED_TOOLTIP;
@@ -66,6 +70,9 @@ public class Config {
         ENABLE_SCROLL_TOOLTIP = BUILDER
                 .comment("是否启用添加卷轴Tooltip-修改此配置需重启生效")
                 .define("enableScrollTooltip", true);
+        HIDE_MATERIAL_KEYS = BUILDER
+                .comment("按material的key隐藏tooltip")
+                .define("hideMaterialKeys",new ArrayList<>());
         ENABLE_SPECIAL_MATERIAL_TOOLTIP = BUILDER
                 .comment("是否启用添加特殊材料Tooltip-修改此配置需重启生效")
                 .define("enableSpecialMaterialTooltip", true);
