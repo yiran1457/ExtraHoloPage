@@ -10,6 +10,7 @@ public class Config {
     private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
 
     public static final ForgeConfigSpec.ConfigValue<Boolean> HOLO_SHOW_ALL_RARITY;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_STATBAR_SHOW_CONTROL;
     public static final ForgeConfigSpec.ConfigValue<Boolean> IGNORE_HOLO_ITEM;
     public static final ForgeConfigSpec.ConfigValue<Integer> HOLO_MATERIAL_LINE;
     public static final ForgeConfigSpec.ConfigValue<Integer> HOLO_MODULE_LINE;
@@ -58,6 +59,9 @@ public class Config {
                 .comment("修改全息球显示模块行数")
                 .comment("midify module line in holo")
                 .define("holoModuleLine", 2);
+        ENABLE_STATBAR_SHOW_CONTROL = BUILDER
+                .comment("是否启用statbar显示控制")
+                .define("enableStatBarShowControl", false);
         MODIFY_IMPROVEMENT_SPACING = BUILDER
                 .comment("修改改进间距。")
                 .comment("Modify Improvement spacing.")

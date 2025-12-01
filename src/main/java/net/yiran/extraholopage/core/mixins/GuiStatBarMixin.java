@@ -2,6 +2,7 @@ package net.yiran.extraholopage.core.mixins;
 
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.yiran.extraholopage.Config;
 import net.yiran.extraholopage.api.StatBarShowManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -21,6 +22,7 @@ public class GuiStatBarMixin {
 
     @Inject(method = "shouldShow", at = @At("HEAD"), cancellable = true)
     private void shouldShow(Player player, ItemStack currentStack, ItemStack previewStack, String slot, String improvement, CallbackInfoReturnable<Boolean> cir) {
+        if(!Config.ENABLE_STATBAR_SHOW_CONTROL.get())return;
         if (Objects.equals(currentStack.getItem(), previewStack.getItem()) || previewStack.isEmpty()) {
             if (!(currentStack.getItem() instanceof IModularItem)) {
                 currentStack = ItemUpgradeRegistry.instance.getReplacement(currentStack);
