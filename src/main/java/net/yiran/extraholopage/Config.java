@@ -54,18 +54,18 @@ public class Config {
         HOLO_MATERIAL_LINE = BUILDER
                 .comment("修改全息球显示材料行数")
                 .comment("midify material line in holo")
-                .define("holoMaterialLine", 2);
+                .define("holoMaterialLine", 5);
         HOLO_MODULE_LINE = BUILDER
                 .comment("修改全息球显示模块行数")
                 .comment("midify module line in holo")
-                .define("holoModuleLine", 2);
+                .define("holoModuleLine", 5);
         ENABLE_STATBAR_SHOW_CONTROL = BUILDER
                 .comment("是否启用statbar显示控制")
                 .define("enableStatBarShowControl", false);
         MODIFY_IMPROVEMENT_SPACING = BUILDER
                 .comment("修改改进间距。")
                 .comment("Modify Improvement spacing.")
-                .define("modify_improvement_spacing", 28);
+                .define("modify_improvement_spacing", 50);
         SHOW_FILTER_AND_SORTER_ELEMENTS = BUILDER
                 .comment("在材料页面显示sorter和filter的数量")
                 .define("showFilterAndSorterElements", 10);
@@ -74,15 +74,15 @@ public class Config {
         ENABLE_SCROLL_TOOLTIP = BUILDER
                 .comment("是否启用添加卷轴Tooltip-修改此配置需重启生效")
                 .define("enableScrollTooltip", true);
-        HIDE_MATERIAL_KEYS = BUILDER
-                .comment("按material的key隐藏tooltip")
-                .define("hideMaterialKeys",new ArrayList<>());
         ENABLE_SPECIAL_MATERIAL_TOOLTIP = BUILDER
                 .comment("是否启用添加特殊材料Tooltip-修改此配置需重启生效")
                 .define("enableSpecialMaterialTooltip", true);
         ENABLE_MATERIAL_TOOLTIP = BUILDER
                 .comment("是否启用添加材料Tooltip-修改此配置需重启生效")
-                .define("enableMaterialTooltip", false);
+                .define("enableMaterialTooltip", true);
+        HIDE_MATERIAL_KEYS = BUILDER
+                .comment("按material的key隐藏tooltip")
+                .define("hideMaterialKeys",new ArrayList<>());
         SHOW_NEED_ADVANCED_TOOLTIP = BUILDER
                 .comment("是否需要在打开高级物品提示的时候才显示tooltip-修改此配置需重启生效")
                 .define("showNeedAdvancedTooltip", true);
