@@ -9,6 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraftforge.client.event.ScreenEvent;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -17,6 +18,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.yiran.extraholopage.Config;
 import net.yiran.extraholopage.KeyMappingHandler;
 import net.yiran.extraholopage.api.TooltipRegistries;
+import net.yiran.extraholopage.api.event.MaterialTooltipGetterEvent;
 import net.yiran.extraholopage.compat.CompatHandler;
 import net.yiran.extraholopage.compat.OverhaulCompat;
 import net.yiran.extraholopage.util.KeyMappingUtil;
@@ -123,12 +125,15 @@ public class TooltipHandler {
         size = pMaterialData.size();
         if (size == 0) return;
         var keyMappingName = KeyMappingUtil.getKeyMappingName(KeyMappingHandler.showTooltip);
-        if (!KeyMappingUtil.isKeyMappingPressed(KeyMappingHandler.showTooltip)) {
+        if (!Config.ENABLE_ALLOWS_SHOW_TOOLTIP.get() && !KeyMappingUtil.isKeyMappingPressed(KeyMappingHandler.showTooltip)) {
             toolTip.add(Component.literal("§7[§8 " + keyMappingName + " §7]§8 +"));
         } else {
-            toolTip.add(Component.literal("§8[§f " + keyMappingName + " §8]§f +"));
+
             if (index >= size) {
                 index = 0;
+                toolTip.add(Component.literal("§8[§f " + keyMappingName + " §8]§f +"));
+            } else if (!Config.ENABLE_ALLOWS_SHOW_TOOLTIP.get()) {
+                toolTip.add(Component.literal("§8[§f " + keyMappingName + " §8]§f +"));
             }
             if (size > 1) {
                 addProgressBar(toolTip);
@@ -175,6 +180,7 @@ public class TooltipHandler {
                 addAspectsTooltip(toolTip, materialData.aspects);
             if (Config.SHOW_IMPROVEMENTS.get())
                 addImprovementsTooltip(toolTip, materialData.improvements);
+            MinecraftForge.EVENT_BUS.post(new MaterialTooltipGetterEvent(toolTip, materialData));
         }
         originToolTip.addAll(1, toolTip);
     }

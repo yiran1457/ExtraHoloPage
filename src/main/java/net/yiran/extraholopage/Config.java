@@ -17,6 +17,7 @@ public class Config {
     public static final ForgeConfigSpec.ConfigValue<Integer> SHOW_FILTER_AND_SORTER_ELEMENTS;
     public static final ForgeConfigSpec.ConfigValue<Integer> MODIFY_IMPROVEMENT_SPACING;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_MATERIAL_TOOLTIP;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ALLOWS_SHOW_TOOLTIP;
     public static final ForgeConfigSpec.ConfigValue<List<String>> HIDE_MATERIAL_KEYS;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_SPECIAL_MATERIAL_TOOLTIP;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_SCROLL_TOOLTIP;
@@ -80,6 +81,9 @@ public class Config {
         ENABLE_MATERIAL_TOOLTIP = BUILDER
                 .comment("是否启用添加材料Tooltip-修改此配置需重启生效")
                 .define("enableMaterialTooltip", true);
+        ENABLE_ALLOWS_SHOW_TOOLTIP = BUILDER
+                .comment("是否常驻显示材料属性tooltip")
+                .define("enableAllowsShowTooltip", false);
         HIDE_MATERIAL_KEYS = BUILDER
                 .comment("按material的key隐藏tooltip")
                 .define("hideMaterialKeys",new ArrayList<>());

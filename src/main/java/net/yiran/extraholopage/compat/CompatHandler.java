@@ -11,6 +11,7 @@ import net.yiran.tmo.TetraMaterialOverhaul;
 public class CompatHandler {
     public static ResourceLocation HOLO = new ResourceLocation("extraholopage", "textures/gui/holo.png");
     public static boolean OverhaulIsLoaded = ModList.get().isLoaded(TetraMaterialOverhaul.MODID);
+
     public static void onClientSetup(FMLClientSetupEvent event) {
         if (ModList.get().isLoaded("art_of_forging"))
             AoF_Compat();
@@ -21,14 +22,14 @@ public class CompatHandler {
     public static void AoF_Compat() {
         Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation("art_of_forging", "modular_artifact"));
         ExtraHoloRegister.register(item)
-                .setTexture(HOLO,0,0);
+                .setTexture(HOLO, 0, 0);
 
     }
 
     public static void SoF_Compat() {
         Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation("tetra", "modular_polearm"));
         ExtraHoloRegister.register(item)
-                .setTexture(HOLO,38,0);
+                .setTexture(HOLO, 38, 0);
     }
 
 
