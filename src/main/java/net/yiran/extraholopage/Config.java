@@ -15,6 +15,7 @@ public class Config {
     public static final ForgeConfigSpec.ConfigValue<Integer> HOLO_MATERIAL_LINE;
     public static final ForgeConfigSpec.ConfigValue<Integer> HOLO_MODULE_LINE;
     public static final ForgeConfigSpec.ConfigValue<Integer> SHOW_FILTER_AND_SORTER_ELEMENTS;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> SHOW_MATERIAL_DATA_HOLO;
     public static final ForgeConfigSpec.ConfigValue<Integer> MODIFY_IMPROVEMENT_SPACING;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_MATERIAL_TOOLTIP;
     public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ALLOWS_SHOW_TOOLTIP;
@@ -70,6 +71,9 @@ public class Config {
         SHOW_FILTER_AND_SORTER_ELEMENTS = BUILDER
                 .comment("在材料页面显示sorter和filter的数量")
                 .define("showFilterAndSorterElements", 10);
+        SHOW_MATERIAL_DATA_HOLO = BUILDER
+                .comment("在材料页面的材料上显示材料属性的tooltip")
+                .define("showMaterialDataHolo", true);
 
         BUILDER.push("Tooltip");
         ENABLE_SCROLL_TOOLTIP = BUILDER

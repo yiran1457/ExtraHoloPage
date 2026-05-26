@@ -35,7 +35,6 @@ public class MyHoloMaterialGroupGui extends GuiElement {
         for (int i = 0; i < materials.size(); ++i) {
             MaterialData material = materials.get(i);
             var item = new HoloMaterialSorterGui(i / Config.HOLO_MATERIAL_LINE.get() * 20, i % Config.HOLO_MATERIAL_LINE.get() * 20, guiSorter, material, onVariantHover, onVariantBlur, onVariantSelect);
-            //HoloMaterialItemGui item = new HoloMaterialItemGui(i / Config.HOLO_MATERIAL_LINE.get() * 20, i % Config.HOLO_MATERIAL_LINE.get() * 20, material, onVariantHover, onVariantBlur, onVariantSelect);
             this.materialsContainer.addChild(item);
             this.itemAnimations[i] = (new KeyframeAnimation(80, item))
                     .applyTo(new Applier.Opacity(0.0F, 1.0F), new Applier.TranslateY((float) (item.getY() - 5), (float) item.getY()))

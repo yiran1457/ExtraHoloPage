@@ -128,12 +128,12 @@ public class TooltipHandler {
         if (!Config.ENABLE_ALLOWS_SHOW_TOOLTIP.get() && !KeyMappingUtil.isKeyMappingPressed(KeyMappingHandler.showTooltip)) {
             toolTip.add(Component.literal("§7[§8 " + keyMappingName + " §7]§8 +"));
         } else {
+            if (!Config.ENABLE_ALLOWS_SHOW_TOOLTIP.get() || size > 1) {
+                toolTip.add(Component.literal("§8[§f " + keyMappingName + " §8]§f +"));
+            }
 
             if (index >= size) {
                 index = 0;
-                toolTip.add(Component.literal("§8[§f " + keyMappingName + " §8]§f +"));
-            } else if (!Config.ENABLE_ALLOWS_SHOW_TOOLTIP.get()) {
-                toolTip.add(Component.literal("§8[§f " + keyMappingName + " §8]§f +"));
             }
             if (size > 1) {
                 addProgressBar(toolTip);
@@ -143,46 +143,52 @@ public class TooltipHandler {
             MaterialData materialData = pMaterialData.get(index);
             if (Config.SHOW_SOURCE.get())
                 toolTip.add((addPrefix(translatable("tetra.holo.craft.materials.stat.source", color1), literal(map.get(materialData).toString(), color1))));
-            if (Config.SHOW_CATEGORY.get())
-                toolTip.add(addPrefix(translatable("tetra.holo.craft.materials.stat.category", color1), translatable("tetra.variant_category." + materialData.category + ".label", color1)));
-            if (Config.SHOW_DURABILITY.get())
-                addIfNotZero(toolTip, "durability", materialData.durability);
-            if (Config.SHOW_BASIC.get()) {
-                addIfNotZero(toolTip, "primary", materialData.primary);
-                addIfNotZero(toolTip, "secondary", materialData.secondary);
-                addIfNotZero(toolTip, "tertiary", materialData.tertiary);
-            }
-            if (Config.SHOW_TOOL_LEVEL.get()) {
-                addIfNotZero(toolTip, "toolLevel", materialData.toolLevel);
-                addIfNotZero(toolTip, "toolEfficiency", materialData.toolEfficiency);
-            }
-            if (Config.SHOW_XP_COST.get())
-                addIfNotZero(toolTip, "experienceCost", materialData.experienceCost);
-            if (Config.SHOW_INTEGRITY_INFO.get()) {
-                addIfNotZero(toolTip, "integrityGain", materialData.integrityGain);
-                addIfNotZero(toolTip, "integrityCost", materialData.integrityCost);
-            }
-            if (Config.SHOW_XP_COST.get())
-                addIfNotZero(toolTip, "magicCapacity", materialData.magicCapacity);
-            if (Config.SHOW_REQUIRED_TOOL.get())
-                addRequiredToolTooltip(toolTip, materialData.requiredTools);
-            if (Config.SHOW_ATTRIBUTES.get())
-                if (CompatHandler.OverhaulIsLoaded)
-                    OverhaulCompat.addAttributeTooltip(toolTip, materialData);
-                else
-                    addAttributeTooltip(toolTip, materialData.attributes);
-            if (Config.SHOW_EFFECTS.get())
-                if (CompatHandler.OverhaulIsLoaded)
-                    OverhaulCompat.addEffectsTooltip(toolTip, materialData);
-                else
-                    addEffectsTooltip(toolTip, materialData.effects);
-            if (Config.SHOW_ASPECTS.get())
-                addAspectsTooltip(toolTip, materialData.aspects);
-            if (Config.SHOW_IMPROVEMENTS.get())
-                addImprovementsTooltip(toolTip, materialData.improvements);
-            MinecraftForge.EVENT_BUS.post(new MaterialTooltipGetterEvent(toolTip, materialData));
+            toolTip.addAll(getMaterialTooltip(materialData));
         }
         originToolTip.addAll(1, toolTip);
+    }
+
+    public List<Component> getMaterialTooltip(MaterialData materialData) {
+        List<Component> toolTip = new ArrayList<>();
+        if (Config.SHOW_CATEGORY.get())
+            toolTip.add(addPrefix(translatable("tetra.holo.craft.materials.stat.category", color1), translatable("tetra.variant_category." + materialData.category + ".label", color1)));
+        if (Config.SHOW_DURABILITY.get())
+            addIfNotZero(toolTip, "durability", materialData.durability);
+        if (Config.SHOW_BASIC.get()) {
+            addIfNotZero(toolTip, "primary", materialData.primary);
+            addIfNotZero(toolTip, "secondary", materialData.secondary);
+            addIfNotZero(toolTip, "tertiary", materialData.tertiary);
+        }
+        if (Config.SHOW_TOOL_LEVEL.get()) {
+            addIfNotZero(toolTip, "toolLevel", materialData.toolLevel);
+            addIfNotZero(toolTip, "toolEfficiency", materialData.toolEfficiency);
+        }
+        if (Config.SHOW_XP_COST.get())
+            addIfNotZero(toolTip, "experienceCost", materialData.experienceCost);
+        if (Config.SHOW_INTEGRITY_INFO.get()) {
+            addIfNotZero(toolTip, "integrityGain", materialData.integrityGain);
+            addIfNotZero(toolTip, "integrityCost", materialData.integrityCost);
+        }
+        if (Config.SHOW_XP_COST.get())
+            addIfNotZero(toolTip, "magicCapacity", materialData.magicCapacity);
+        if (Config.SHOW_REQUIRED_TOOL.get())
+            addRequiredToolTooltip(toolTip, materialData.requiredTools);
+        if (Config.SHOW_ATTRIBUTES.get())
+            if (CompatHandler.OverhaulIsLoaded)
+                OverhaulCompat.addAttributeTooltip(toolTip, materialData);
+            else
+                addAttributeTooltip(toolTip, materialData.attributes);
+        if (Config.SHOW_EFFECTS.get())
+            if (CompatHandler.OverhaulIsLoaded)
+                OverhaulCompat.addEffectsTooltip(toolTip, materialData);
+            else
+                addEffectsTooltip(toolTip, materialData.effects);
+        if (Config.SHOW_ASPECTS.get())
+            addAspectsTooltip(toolTip, materialData.aspects);
+        if (Config.SHOW_IMPROVEMENTS.get())
+            addImprovementsTooltip(toolTip, materialData.improvements);
+        MinecraftForge.EVENT_BUS.post(new MaterialTooltipGetterEvent(toolTip, materialData));
+        return toolTip;
     }
 
     public boolean filterHide(Map.Entry<ResourceLocation, MaterialData> entry) {

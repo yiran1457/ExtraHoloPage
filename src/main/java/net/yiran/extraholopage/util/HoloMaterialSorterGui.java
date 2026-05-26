@@ -3,6 +3,9 @@ package net.yiran.extraholopage.util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
+import net.yiran.extraholopage.Config;
+import net.yiran.extraholopage.gui.TooltipHandler;
 import se.mickelus.mutil.gui.GuiClickable;
 import se.mickelus.mutil.gui.GuiItem;
 import se.mickelus.mutil.gui.GuiStringOutline;
@@ -11,6 +14,7 @@ import se.mickelus.tetra.gui.GuiItemRolling;
 import se.mickelus.tetra.gui.GuiTextures;
 import se.mickelus.tetra.module.data.MaterialData;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 public class HoloMaterialSorterGui extends GuiClickable {
@@ -65,5 +69,10 @@ public class HoloMaterialSorterGui extends GuiClickable {
         super.onBlur();
         this.onBlur.accept(this.material);
         this.backdrop.setColor(this.isMuted ? 8355711 : 16777215);
+    }
+
+    @Override
+    public List<Component> getTooltipLines() {
+        return hasFocus() && Config.SHOW_MATERIAL_DATA_HOLO.get() ? TooltipHandler.INSTANCE.get().getMaterialTooltip(material) : null;
     }
 }
