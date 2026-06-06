@@ -59,7 +59,10 @@ public class MyHoloVariantGroupGui extends GuiElement {
 
                 width = variant.getX() + variant.getWidth();
             } else {
-                HoloVariantMajorItemGui variant = new HoloVariantMajorItemGui((i / line) * 20 + (i % line % 2) * 10, (i % line) * 15, outcome,
+                HoloVariantMajorItemGui variant = new HoloVariantMajorItemGui(
+                        line > 2 ? (i / line) * 15 : (i / line) * 20 + (i % line % 2) * 10,
+                        (i % line) * 15,
+                        outcome,
                         sorter.getValue(player, outcome.itemStack), onVariantHover, onVariantBlur, onVariantSelect);
                 variantsContainer.addChild(variant);
 
@@ -69,7 +72,7 @@ public class MyHoloVariantGroupGui extends GuiElement {
                                 new Applier.TranslateY(-5, 0, true))
                         .withDelay(40 + 40 * (offset + i) / line);
 
-                width = variant.getX() + variant.getWidth() + 20 - (i % line % 2) * 10;
+                width = line>2?variant.getX() + variant.getWidth():variant.getX() + variant.getWidth() + 20 - (i % line % 2) * 10;
             }
         }
 

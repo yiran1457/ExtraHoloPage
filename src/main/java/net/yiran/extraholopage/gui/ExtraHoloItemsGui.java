@@ -17,7 +17,7 @@ import se.mickelus.tetra.items.modular.impl.holo.gui.craft.HoloSeparatorsGui;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
-public class ExtraHoloItemsGui  extends GuiElement {
+public class ExtraHoloItemsGui extends GuiElement {
 
     private final HoloSeparatorsGui separators;
     private final HoloMaterialsButtonGui materialsButton;
@@ -32,23 +32,30 @@ public class ExtraHoloItemsGui  extends GuiElement {
         int index = 0;
         for (ExtraHoloBuilder value : ExtraHoloRegister.MAP.values()) {
             HoloItemGui holoItemGui = (HoloItemGui) new HoloItemGui(
-                    ExtraHoloBuilder.ListX[index] * 40 + 1, ExtraHoloBuilder.ListY[index] * 40,
+                    ExtraHoloBuilder.getX(index) * 40 + 1, ExtraHoloBuilder.getY(index) * 40,
                     (IModularItem) value.item, 0,
-                    () -> onItemSelect.accept((IModularItem) value.item, value.itemSupplier), onSlotSelect)
+                    () -> onItemSelect.accept((IModularItem) value.item, value.getItemSupplier()), onSlotSelect)
                     .setAttachment(GuiAttachment.topCenter);
             IHoloItemGui iHoloItemGui = IHoloItemGui.cast(holoItemGui);
+
+            if (value.alwaysShowName) {
+                iHoloItemGui.getBlurAnimations().clear();
+                iHoloItemGui.getHoverAnimations().clear();
+                iHoloItemGui.getLabelGroup().setOpacity(1);
+            }
 
             iHoloItemGui.setIcon(
                     new GuiTexture(0, 0, value.width, value.height, value.textureX, value.textureY, value.texture)
             );
+
             this.addChild(holoItemGui);
             index++;
         }
         this.materialsButton = new HoloMaterialsButtonGui(0, 60, onMaterialsClick);
         this.materialsButton.setAttachment(GuiAttachment.topCenter);
         this.addChild(this.materialsButton);
-        this.openAnimation = new KeyframeAnimation(200, this).applyTo(new Applier.TranslateY((float)(y - 4), (float)y), new Applier.Opacity(0.0F, 1.0F)).withDelay(800);
-        this.backAnimation = new KeyframeAnimation(100, this).applyTo(new Applier.TranslateY((float)(y - 4), (float)y), new Applier.Opacity(0.0F, 1.0F));
+        this.openAnimation = new KeyframeAnimation(200, this).applyTo(new Applier.TranslateY((float) (y - 4), (float) y), new Applier.Opacity(0.0F, 1.0F)).withDelay(800);
+        this.backAnimation = new KeyframeAnimation(100, this).applyTo(new Applier.TranslateY((float) (y - 4), (float) y), new Applier.Opacity(0.0F, 1.0F));
     }
 
     public void animateOpen() {

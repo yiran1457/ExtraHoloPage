@@ -2,9 +2,10 @@ package net.yiran.extraholopage.gui;
 
 import net.minecraft.network.chat.MutableComponent;
 
-import java.awt.Color;
+import java.awt.*;
 
-import static net.yiran.extraholopage.gui.ComponentHelper.*;
+import static net.yiran.extraholopage.gui.ComponentHelper.append;
+import static net.yiran.extraholopage.gui.ComponentHelper.literal;
 
 public class MaterialTooltipHelper {
     public static int color0 = Color.WHITE.getRGB();
@@ -16,6 +17,7 @@ public class MaterialTooltipHelper {
 
     public static MutableComponent PREFIX = literal("» ", color3);
     public static MutableComponent MIDDLE = literal("  ├ ", color2);
+    public static MutableComponent LEFT = literal("  │ ", color2);
     public static MutableComponent END = literal("  └ ", color2);
 
     public static MutableComponent getValue(MutableComponent component1, int color, MutableComponent component2) {
